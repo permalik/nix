@@ -5,3 +5,4 @@ sudo cp ./flake.lock /etc/nixos
 sudo cp ./flake.nix /etc/nixos
 sudo cp ./hardware-configuration.nix /etc/nixos
 sudo cp ./home.nix /etc/nixos
+sudo cp -r ./config /etc/nixos
