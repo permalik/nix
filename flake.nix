@@ -29,6 +29,7 @@
 
   initNixosConfiguration = hostname: username:
     nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
       specialArgs = {
         inherit inputs outputs hostname;
         userConfig = users.${username};
