@@ -29,12 +29,22 @@
 
   initNixosConfiguration = hostname: username:
     nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs outputs hostname;
+        userConfig = users.${username};
+        nixosModules = "${self}/modules/nixos";
+      };
       modules = [./hosts/${hostname}];
     };
 
   initHomeConfiguration = system: username: hostname:
     home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {inherit system;};
+      extraSpecialArgs = {
+        inherit inputs outputs;
+        userConfig = users.${username};
+        permalikModules = "${self}/modules/home-manager";
+      };
       modules = [
         ./configuration.nix
         ./home/${username}/${hostname}
