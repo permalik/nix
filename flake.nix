@@ -46,7 +46,7 @@
         permalikModules = "${self}/modules/home-manager";
       };
       modules = [
-        ./configuration.nix
+        # ./configuration.nix
         ./home/${username}/${hostname}
       ];
     };
