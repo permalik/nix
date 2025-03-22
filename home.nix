@@ -10,6 +10,7 @@
 		unzip
 		ripgrep
 		fzf
+		neovim
 		tmux
 		jq
 	];
@@ -47,6 +48,7 @@
 			pkgs.vimPlugins.plenary-nvim
 			pkgs.vimPlugins.lualine-nvim
 			pkgs.vimPlugins.fidget-nvim
+			pkgs.vimPlugins.harpoon2
 
 			## CMP
 			pkgs.vimPlugins.nvim-cmp
@@ -83,6 +85,7 @@
 			${builtins.readFile config/setup/lualine.lua}
 			${builtins.readFile config/setup/fidget.lua}
 			${builtins.readFile config/setup/gitsigns.lua}
+			${builtins.readFile config/setup/harpoon.lua}
 			${builtins.readFile config/setup/clangd_extensions.lua}
 			${builtins.readFile config/setup/dap.lua}
 		'';
