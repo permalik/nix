@@ -29,7 +29,7 @@
 		initNixosConfiguration = hostname: username:
 			nixpkgs.lib.nixosSystem {
 				specialArgs = {
-					inherit inputs outputs hostname:
+					inherit inputs outputs hostname;
 					userConfig = users.${username};
 					nixosModules = "${self}/modules/nixos";
 				};
