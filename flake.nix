@@ -17,7 +17,51 @@
 		nixpkgs,
 		home-manager,
 		...
-	} @ inputs: {
+	} @ inputs: let
+		inherit (self) outputs;
+		
+		users = {
+			permalik = {
+				name = "permalik";
+			};
+		};
+
+		initNixosConfiguration = hostname: username:
+			nixpkgs.lib.nixosSystem {
+				specialArgs = {
+					inherit inputs outputs hostname:
+					userConfig = users.${username};
+					nixosModules = "${self}/modules/nixos";
+				};
+				modules = [./hosts/${hostname}];
+			};
+
+		initHomeConfiguration = system: username: hostname:
+			home-manager.lib.homeManagerConfiguration {
+				pkgs = import nixpkgs {inherit system;};
+				extraSpecialArgs = {
+					inherit inputs outputs;
+					userConfig = users.${username};
+					permalikModules = "${self}/modules/home-manager";
+				};
+				modules = [
+					./home/${username}/${hostname}
+				];
+			};
+
+		in {
+			nixosConfiguration = {
+				linux = initNixosConfiguration "linux" "permalik";
+			};
+
+			homeConfiguration = {
+				"permalik@linux" = initHomeConfiguration "x86_64-linux" "permalik" "linux";
+			};
+			
+			overlays = import ./overlays {inherit inputs;};
+		};
+		
+		/*
 		nixosConfigurations = {
 			nixos = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";
@@ -33,5 +77,5 @@
 				];
 			};
 		};
-	};
+		*/
 }
