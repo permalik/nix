@@ -16,10 +16,19 @@ sudo cp -r /home/permalik/Docs/Git/nix/overlays /etc/nixos
 
 # Rebuild Environment
 cd /etc/nixos
-sudo nixos-rebuild switch
+sudo nixos-rebuild switch --flake /etc/nixos#linux
 
 if [ $? -eq 0 ]; then
 	echo "Success: NixOS rebuild complete."
+else
+	echo "Error: NixOS rebuild failed."
+	exit 1
+fi
+
+home-manager switch --flake /etc/nixos#permalik@linux
+
+if [ $? -eq 0 ]; then
+	echo "Success: home-manager rebuild complete."
 	# Remove Backups
 	sudo rm /etc/nixos/configuration.nix.bak
 	sudo rm /etc/nixos/flake.lock.bak
@@ -28,7 +37,7 @@ if [ $? -eq 0 ]; then
 	sudo rm /etc/nixos/home.nix.bak
 	echo "Backups removed."
 else
-	echo "Error: NixOS rebuild failed."
+	echo "Error: home-manager rebuild failed."
 	exit 1
 fi
 

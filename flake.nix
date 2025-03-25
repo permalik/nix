@@ -50,11 +50,11 @@
 			};
 
 		in {
-			nixosConfiguration = {
+			nixosConfigurations = {
 				linux = initNixosConfiguration "linux" "permalik";
 			};
 
-			homeConfiguration = {
+			homeConfigurations = {
 				"permalik@linux" = initHomeConfiguration "x86_64-linux" "permalik" "linux";
 			};
 			
