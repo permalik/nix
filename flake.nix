@@ -1,5 +1,5 @@
 {
-	description = "permalik nixos";
+	description = "permalik nixos + nix-darwin";
 
 	inputs = {
 		# Nixos
