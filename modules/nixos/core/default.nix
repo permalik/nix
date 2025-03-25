@@ -103,11 +103,13 @@
 	# Zsh Configuration
 	programs.zsh.enable = true;
 
+	/*
 	# Fonts Configuration
 	fonts.packages = with pkgs; [
 		nerd-fonts.jetbrains-mono
 		roboto
 	];
+	*/
 
 	# OpenSSH Configuration
 	services.openssh.enable = true;
