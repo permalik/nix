@@ -32,7 +32,7 @@
 	# Nix Settings
 	nix.settings = {
 		experimental-features = "nix-command flakes";
-		auto-optimize-store = true;
+		# auto-optimize-store = true;
 	};
 
 	# Boot Settings
