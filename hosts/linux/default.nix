@@ -2,13 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
-{
+{ inputs, config, lib, pkgs, ... }: {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+
+  # Register flake inputs
+  nix.registry = lib.mapAttrs (_: flake: {inherit flake;}) (lib.filterAttrs (_: lib.isType "flake") inputs);
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -101,10 +102,11 @@
   # $ nix search wget
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = with pkgs; [
-	git
+	gnumake
 	tmux
 	vim
 	wget
+	home-manager
   ];
 
   environment.variables = {

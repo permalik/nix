@@ -17,21 +17,51 @@
 		nixpkgs,
 		home-manager,
 		...
-	} @ inputs: {
-		nixosConfigurations = {
-			nixos = nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";
-				specialArgs = { inherit inputs; };
-				modules = [
-					./configuration.nix
-						home-manager.nixosModules.home-manager
-						{
-							home-manager.useGlobalPkgs = true;
-							home-manager.useUserPackages = true;
-							home-manager.users.permalik = import ./home.nix;
-						}
-				];
+	} @ inputs:
+	let
+		inherit (self) outputs;
+
+		# User Configuration
+		users = {
+			permalik = {
+				name = "permalik";
+				email = "permalik@protonmail.com";
+				homeDir = "/home/permalik";
 			};
 		};
+	in {	
+		# NixOS Configuration
+		nixosConfigurations = {
+			nixos = nixpkgs.lib.nixosSystem {
+				specialArgs = {inherit inputs outputs;};
+				modules = [./hosts/linux];
+				# system = "x86_64-linux";
+			};
+		};
+		
+		# Home Manager Configuration
+		homeConfigurations = {
+			"permalik@nixos" = home-manager.lib.homeManagerConfiguration {
+				pkgs = nixpkgs.legacyPackages.x86_64-linux;
+				extraSpecialArgs = {
+					inherit inputs outputs;
+					userConfig = users.permalik;
+					homeModules = "${self}/home-manager";
+				};
+				modules = [./home/linux];
+			};
+		};
+
+		/*
+		modules = [
+			./configuration.nix
+				home-manager.nixosModules.home-manager
+				{
+					home-manager.useGlobalPkgs = true;
+					home-manager.useUserPackages = true;
+					home-manager.users.permalik = import ./home.nix;
+				}
+		];
+		*/
 	};
 }

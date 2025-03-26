@@ -1,13 +1,25 @@
-{ config, pkgs, ... }:
-
 {
-	home.username = "permalik";
-	home.homeDirectory = "/home/permalik";
+	inputs,
+	lib,
+	config,
+	pkgs,
+	userConfig,
+	...
+}: {
+	imports = [
+		../programs/git
+	];
+
+	home = {
+		username = "permalik";
+		homeDirectory = "/home/permalik";
+	};
 
 	home.packages = with pkgs; [
 		# Compression
 		zip
 		unzip
+	/*
 		xz
 		# zstd
 		# p7zip
@@ -51,14 +63,6 @@
 		# gnupg
 		# hugo
 		# glow
+	*/
 	];
-	
-	programs.git = {
-		enable = true;
-		userName = "permalik";
-		userEmail = "permalik@protonmail.com";
-	};
-
-	home.stateVersion = "24.11";
-	programs.home-manager.enable = true;
 }
