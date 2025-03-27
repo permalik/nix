@@ -2,26 +2,26 @@
 	description = "permalik nixos + nix-darwin";
 
 	inputs = {
-	    # Nixos
+		# Nixos
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
-        # Home Manager
+		# Home Manager
 		home-manager = {
 			url = "github:nix-community/home-manager/release-24.11";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-        # Nix Darwin
-        darwin = {
-            url = "github:LnL7/nix-darwin/nix-darwin-24.11";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+		# Nix Darwin
+		darwin = {
+			url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs = {
 		self,
 		nixpkgs,
-        darwin,
+		darwin,
 		home-manager,
 		...
 	} @ inputs:
@@ -36,67 +36,68 @@
 				homeDir = "/home/permalik";
 			};
 		};
-	in {	
+
 		# NixOS Configuration
+		mkNixosConfiguration = hostname: username:
+			nixpkgs.lib.nixosSystem {
+				system = "x86_64-linux";
+				specialArgs = {
+					inherit inputs outputs;
+					userConfig = users.${username};
+				};
+				modules = [./hosts/${hostname}];
+			};
+
+		# Nix-Darwin Configuration
+		mkDarwinConfiguration = hostname: username:
+			darwin.lib.darwinSystem {
+				system = "aarch64-darwin";
+				specialArgs = {
+					inherit inputs outputs;
+					userConfig = users.${username};
+				};
+				modules = [
+					./hosts/${hostname}
+					home-manager.darwinModules.home-manager
+				];
+			};
+
+		# Home-Manager Configuration
+		mkHomeConfiguration = system: username: hostname:
+			home-manager.lib.homeManagerConfiguration {
+				pkgs = nixpkgs.legacyPackages.${system};
+				extraSpecialArgs = {
+					inherit inputs outputs;
+					userConfig = users.${username};
+					homeModules = "${self}/home-manager";
+				};
+				modules = [./home/${hostname}];
+			};
+
+	in {	
 		nixosConfigurations = {
-			nixos = nixpkgs.lib.nixosSystem {
-				specialArgs = {inherit inputs outputs;};
-				modules = [./hosts/linux];
-				# system = "x86_64-linux";
-			};
+			nixos = mkNixosConfiguration "linux" "permalik";
 		};
-
-        # Nix-Darwin Configuration
-        darwinConfigurations = {
-            "permalik" = darwin.lib.darwinSystem {
-                system = "aarch64-darwin";
-                specialArgs = {
-                    inherit inputs outputs;
-                    userConfig = users.permalik;
-                };
-                modules = [
-                    ./hosts/mac
-                        home-manager.darwinModules.home-manager
-                ];
-            };
-        };
 		
-		# Linux Home Manager Configuration
-		homeConfigurations = {
-			"permalik@nixos" = home-manager.lib.homeManagerConfiguration {
-				pkgs = nixpkgs.legacyPackages.x86_64-linux;
-				extraSpecialArgs = {
-					inherit inputs outputs;
-					userConfig = users.permalik;
-					homeModules = "${self}/home-manager";
-				};
-				modules = [./home/linux];
-			};
+		darwinConfigurations = {
+			permalik = mkDarwinConfiguration "mac" "permalik";
 		};
-
-		# Nix-Darwin Home Manager Configuration
+		
 		homeConfigurations = {
-			"permalik@permalik" = home-manager.lib.homeManagerConfiguration {
-				pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-				extraSpecialArgs = {
-					inherit inputs outputs;
-					userConfig = users.permalik;
-					homeModules = "${self}/home-manager";
-				};
-				modules = [./home/mac];
-			};
+			"permalik@nixos" = mkHomeConfiguration "x86_64-linux" "permalik" "linux";
+			"permalik@permalik" = mkHomeConfiguration "aarch64-darwin" "permalik" "mac";
 		};
 
 		/*
-		modules = [
-			./configuration.nix
-				home-manager.nixosModules.home-manager
-				{
-					home-manager.useGlobalPkgs = true;
-					home-manager.useUserPackages = true;
-					home-manager.users.permalik = import ./home.nix;
-				}
-		];
-		*/
+		   modules = [
+		   ./configuration.nix
+		   home-manager.nixosModules.home-manager
+		   {
+		   home-manager.useGlobalPkgs = true;
+		   home-manager.useUserPackages = true;
+		   home-manager.users.permalik = import ./home.nix;
+		   }
+		   ];
+		 */
 	};
 }

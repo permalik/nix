@@ -6,20 +6,22 @@
 	userConfig,
 	...
 }: {
+	/*
 	imports = [
 		../programs/git
 	];
+	*/
 
 	home = {
 		username = "permalik";
-		homeDirectory = "/home/permalik";
+		homeDirectory = "/home/tymalik";
 	};
 
+    /*
 	home.packages = with pkgs; [
 		# Compression
 		zip
 		unzip
-    /*
 		xz
 		# zstd
 		# p7zip
@@ -63,6 +65,6 @@
 		# gnupg
 		# hugo
 		# glow
-    */
 	];
+    */
 }

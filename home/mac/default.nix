@@ -1,6 +1,6 @@
 {nhModules, ...}: {
   imports = [
-    "${homeModules}/core"
+    "${homeModules}/core_mac"
   ];
 
   # Enable home-manager
