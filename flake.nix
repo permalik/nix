@@ -53,6 +53,27 @@
 					./hosts/${hostname}/configuration.nix
 					./hosts/${hostname}/orbstack.nix
 					home-manager.nixosModules.home-manager
+					{
+						home-manager = {
+							useGlobalPkgs = true;
+          						useUserPackages = true;
+
+          						users.tymalik = {
+								imports = [
+									{home.stateVersion = "24.11";}
+									./home-manager/programs/git
+									./home-manager/programs/packages
+								];
+							};
+							extraSpecialArgs= {
+								inherit inputs outputs nixpkgs-unstable;
+								userConfig = {
+									name = "permalik";
+									email = "permalik@protonmail.com";
+								};
+							};
+						};
+					}
 				];
 			};
 
@@ -92,7 +113,7 @@
 		
 		homeConfigurations = {
 			"permalik@nixos" = mkHomeConfiguration "x86_64-linux" "permalik" "linux";
-			"tymalik@orbstack" = mkHomeConfiguration "aarch64-linux" "tymalik" "orbstack";
+			# "tymalik@orbstack" = mkHomeConfiguration "aarch64-linux" "tymalik" "orbstack";
 			"permalik@permalik" = mkHomeConfiguration "aarch64-darwin" "permalik" "mac";
 		};
 

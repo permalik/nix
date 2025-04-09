@@ -3,7 +3,12 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, modulesPath, ... }:
-
+# let
+	# home-manager = builtins.fetchTarball {
+		# url = "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
+		# sha256 = "sha256:0qk1qn04willw5qrzfjs9b7815np8mr6ci68a2787g3q7444bdxp";
+	# };
+# in
 {
   imports =
     [
@@ -13,6 +18,7 @@
       # ./incus.nix
       # Include the OrbStack-specific configuration.
       ./orbstack.nix
+      # (import "${home-manager}/nixos")
     ];
 
   networking.hostName = "orbstack";
