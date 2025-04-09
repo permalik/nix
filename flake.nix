@@ -63,6 +63,7 @@
 									{home.stateVersion = "24.11";}
 									./home-manager/programs/git
 									./home-manager/programs/packages
+									./home-manager/programs/tmux
 								];
 							};
 							extraSpecialArgs= {

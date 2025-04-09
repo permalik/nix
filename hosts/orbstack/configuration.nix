@@ -44,7 +44,6 @@
     vim
     curl
     wget
-    tmux
   ];
   # Set the default editor to vim
   environment.variables.EDITOR = "vim";
