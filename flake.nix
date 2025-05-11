@@ -1,5 +1,5 @@
 {
-	description = "permalik nixos + nix-darwin";
+	description = "tymalik nixos + nix-darwin";
 
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
@@ -28,6 +28,10 @@
 		users = {
 			permalik = {
 				name = "permalik";
+				email = "permalik@protonmail.com";
+			};
+			tymalik = {
+				name = "tymalik";
 				email = "permalik@protonmail.com";
 			};
 		};
@@ -97,7 +101,9 @@
 				extraSpecialArgs = {
 					inherit inputs outputs;
 					userConfig = users.${username};
-					homeModules = "${self}/home-manager";
+					homeModules = {
+						core_mac = import ./home-manager/core_mac;
+					};
 				};
 				modules = [./home/${hostname}];
 			};
@@ -109,13 +115,13 @@
 		};
 		
 		darwinConfigurations = {
-			permalik = mkDarwinConfiguration "mac" "permalik";
+			tymalik = mkDarwinConfiguration "mac" "tymalik";
 		};
 		
 		homeConfigurations = {
 			"permalik@nixos" = mkHomeConfiguration "x86_64-linux" "permalik" "linux";
-			# "tymalik@orbstack" = mkHomeConfiguration "aarch64-linux" "tymalik" "orbstack";
-			"permalik@permalik" = mkHomeConfiguration "aarch64-darwin" "permalik" "mac";
+			"tymalik@orbstack" = mkHomeConfiguration "aarch64-linux" "tymalik" "orbstack";
+			"permalik@permalik" = mkHomeConfiguration "aarch64-darwin" "tymalik" "mac";
 		};
 
 		/*

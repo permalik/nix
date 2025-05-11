@@ -6,19 +6,18 @@
 	userConfig,
 	...
 }: {
-	/*
 	imports = [
-		../programs/git
+		/*../programs/git*/
+		../programs/nvim
 	];
-	*/
 
 	home = {
-		username = "permalik";
-		homeDirectory = "/home/tymalik";
+		username = "tymalik";
+		homeDirectory = "/Users/tymalik";
 	};
 
-    /*
 	home.packages = with pkgs; [
+    /*
 		# Compression
 		zip
 		unzip
@@ -65,6 +64,6 @@
 		# gnupg
 		# hugo
 		# glow
-	];
     */
+	];
 }

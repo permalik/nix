@@ -8,6 +8,7 @@
 }: {
 	imports = [
 		../programs/git
+		../programs/nvim
 	];
 
 	home = {
