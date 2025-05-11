@@ -4,6 +4,7 @@
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
  		nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+		nixcats.url = "github:birdeehub/nixcats-nvim";
 		home-manager = {
 			url = "github:nix-community/home-manager/release-24.11";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +19,7 @@
 		self,
 		nixpkgs,
 		nixpkgs-unstable,
+		nixcats,
 		darwin,
 		home-manager,
 		...

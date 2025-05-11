@@ -9,6 +9,7 @@
 	imports = [
 		/*../programs/git*/
 		../programs/nvim
+		../programs/nixcats
 	];
 
 	home = {
