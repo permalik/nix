@@ -1,4 +1,5 @@
 require("plugins.colorizer")
+require("plugins.conform")
 require("plugins.debug")
 require("plugins.fugitive")
 require("plugins.gitsigns")
