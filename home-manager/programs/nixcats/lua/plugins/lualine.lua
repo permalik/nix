@@ -7,7 +7,7 @@ return {
             options = {
                 theme = "ayu_mirage",
                 -- theme = "nord",
-            }
+            },
         }
     end,
 }

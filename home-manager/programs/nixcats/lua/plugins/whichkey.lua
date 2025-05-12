@@ -1,5 +1,5 @@
 local use_nerd_font = vim.g.have_nerd_font
-require("which-key").setup({
+require("which-key").setup {
     icons = {
         mappings = vim.g.have_nerd_font,
         keys = vim.g.have_nerd_font and {} or {
@@ -41,5 +41,5 @@ require("which-key").setup({
             { "<leader>t", group = "[t]oggle" },
             { "<leader>h", group = "git [h]unk", mode = { "n", "v" } },
         },
-    }
-})
+    },
+}

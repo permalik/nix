@@ -1,7 +1,7 @@
 return {
     dir = "~/Documents/git/annex_aegis",
     config = function()
-        local annex = require('annex')
+        local annex = require "annex"
         annex.setup()
 
         vim.keymap.set("n", "<leader>at", function()
@@ -15,7 +15,7 @@ return {
         end, { desc = "[a]nnex [c]lose" })
         vim.keymap.set("n", "<esc>", function()
             annex.close_temp()
-        end, { desc = "[a]nnex [c]lose"})
+        end, { desc = "[a]nnex [c]lose" })
         vim.keymap.set("n", "<leader>an", function()
             annex.next_field()
         end, { desc = "[a]nnex [n]ext" })

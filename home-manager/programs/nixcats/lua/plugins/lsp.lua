@@ -9,7 +9,8 @@ return {
         },
     },
     {
-        "Bilal2453/luvit-meta", lazy = true,
+        "Bilal2453/luvit-meta",
+        lazy = true,
     },
     {
         "neovim/nvim-lspconfig",
@@ -17,7 +18,7 @@ return {
             { "williamboman/mason.nvim", config = true },
             "williamboman/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
-            { "j-hui/fidget.nvim",       opts = {} },
+            { "j-hui/fidget.nvim", opts = {} },
             "hrsh7th/cmp-nvim-lsp",
             "MunifTanjim/prettier.nvim",
         },
@@ -27,22 +28,49 @@ return {
                 callback = function(event)
                     local map = function(keys, func, desc, mode)
                         mode = mode or "n"
-                        vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+                        vim.keymap.set(
+                            mode,
+                            keys,
+                            func,
+                            { buffer = event.buf, desc = "LSP: " .. desc }
+                        )
                     end
 
                     map("gd", require("telescope.builtin").lsp_definitions, "[g]oto [d]efinition")
                     map("gr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
-                    map("gI", require("telescope.builtin").lsp_implementations, "[g]oto [i]mplementation")
-                    map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [d]efinition")
-                    map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[d]ocument [s]ymbols")
-                    map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[w]orkspace [s]ymbols")
+                    map(
+                        "gI",
+                        require("telescope.builtin").lsp_implementations,
+                        "[g]oto [i]mplementation"
+                    )
+                    map(
+                        "<leader>D",
+                        require("telescope.builtin").lsp_type_definitions,
+                        "Type [d]efinition"
+                    )
+                    map(
+                        "<leader>ds",
+                        require("telescope.builtin").lsp_document_symbols,
+                        "[d]ocument [s]ymbols"
+                    )
+                    map(
+                        "<leader>ws",
+                        require("telescope.builtin").lsp_dynamic_workspace_symbols,
+                        "[w]orkspace [s]ymbols"
+                    )
                     map("<leader>rn", vim.lsp.buf.rename, "[r]e[n]ame")
                     map("<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction", { "n", "x" })
                     map("gD", vim.lsp.buf.declaration, "[g]oto [d]eclaration")
 
                     local client = vim.lsp.get_client_by_id(event.data.client_id)
-                    if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-                        local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+                    if
+                        client
+                        and client.supports_method(
+                            vim.lsp.protocol.Methods.textDocument_documentHighlight
+                        )
+                    then
+                        local highlight_augroup =
+                            vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
                         vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
                             buffer = event.buf,
                             group = highlight_augroup,
@@ -59,24 +87,36 @@ return {
                             group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
                             callback = function(event2)
                                 vim.lsp.buf.clear_references()
-                                vim.api.nvim_clear_autocmds { group = "lsp-highlight", buffer = event2.buf }
+                                vim.api.nvim_clear_autocmds {
+                                    group = "lsp-highlight",
+                                    buffer = event2.buf,
+                                }
                             end,
                         })
                     end
 
-                    if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+                    if
+                        client
+                        and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint)
+                    then
                         map("<leader>th", function()
-                            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+                            vim.lsp.inlay_hint.enable(
+                                not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }
+                            )
                         end, "[t]oggle inlay [h]ints")
                     end
                 end,
             })
 
             local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+            capabilities = vim.tbl_deep_extend(
+                "force",
+                capabilities,
+                require("cmp_nvim_lsp").default_capabilities()
+            )
 
             local on_attach = function(client)
-                require'completion'.on_attach(client)
+                require("completion").on_attach(client)
             end
 
             local servers = {
@@ -127,7 +167,7 @@ return {
                                 disable = {
                                     "missing-fields",
                                     "lowercase-global",
-                                }
+                                },
                             },
                         },
                     },
@@ -194,7 +234,7 @@ return {
             require("lspconfig").racket_langserver.setup {
                 cmd = { "racket", "-l", "racket-langserver" },
                 filetypes = { "racket" },
-                root_dir = require('lspconfig').util.root_pattern("racket-project.rkt", ".git"),
+                root_dir = require("lspconfig").util.root_pattern("racket-project.rkt", ".git"),
             }
 
             -- require('mason-lspconfig').setup_handlers {
@@ -217,19 +257,23 @@ return {
                 handlers = {
                     function(server_name)
                         if server_name == "cssls" then
-                            local cssls_capabilities = vim.tbl_deep_extend("force", {}, capabilities)
-                            cssls_capabilities.textDocument.completion.completionItem.snippetSupport = true
-                            require("lspconfig")[server_name].setup({
-                                capabilities = cssls_capabilities
-                            })
+                            local cssls_capabilities =
+                                vim.tbl_deep_extend("force", {}, capabilities)
+                            cssls_capabilities.textDocument.completion.completionItem.snippetSupport =
+                                true
+                            require("lspconfig")[server_name].setup {
+                                capabilities = cssls_capabilities,
+                            }
                         end
 
                         if server_name == "html" then
-                            local cssls_capabilities = vim.tbl_deep_extend("force", {}, capabilities)
-                            cssls_capabilities.textDocument.completion.completionItem.snippetSupport = true
-                            require("lspconfig")[server_name].setup({
-                                capabilities = cssls_capabilities
-                            })
+                            local cssls_capabilities =
+                                vim.tbl_deep_extend("force", {}, capabilities)
+                            cssls_capabilities.textDocument.completion.completionItem.snippetSupport =
+                                true
+                            require("lspconfig")[server_name].setup {
+                                capabilities = cssls_capabilities,
+                            }
                         end
 
                         -- if server_name == "htmx" then
@@ -238,15 +282,17 @@ return {
                         -- end
 
                         if server_name == "jsonls" then
-                            local cssls_capabilities = vim.tbl_deep_extend("force", {}, capabilities)
-                            cssls_capabilities.textDocument.completion.completionItem.snippetSupport = true
-                            require("lspconfig")[server_name].setup({
-                                capabilities = cssls_capabilities
-                            })
+                            local cssls_capabilities =
+                                vim.tbl_deep_extend("force", {}, capabilities)
+                            cssls_capabilities.textDocument.completion.completionItem.snippetSupport =
+                                true
+                            require("lspconfig")[server_name].setup {
+                                capabilities = cssls_capabilities,
+                            }
                         end
 
                         if server_name == "rust_analyzer" then
-                            require("lspconfig")[server_name].setup({
+                            require("lspconfig")[server_name].setup {
                                 on_attach = on_attach,
                                 settings = {
                                     ["rust-analyzer"] = {
@@ -262,17 +308,22 @@ return {
                                             },
                                         },
                                         procMacro = {
-                                            enable = true
+                                            enable = true,
                                         },
-                                    }
-                                }
-                            })
+                                    },
+                                },
+                            }
                         end
                         local server = servers[server_name] or {}
-                        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+                        server.capabilities = vim.tbl_deep_extend(
+                            "force",
+                            {},
+                            capabilities,
+                            server.capabilities or {}
+                        )
                         require("lspconfig")[server_name].setup(server)
                     end,
-                    ['jdtls'] = noop,
+                    ["jdtls"] = noop,
                 },
             }
         end,
@@ -280,27 +331,27 @@ return {
     {
         "nvimtools/none-ls.nvim",
         config = function()
-            local null_ls = require("null-ls")
+            local null_ls = require "null-ls"
 
-            null_ls.setup({
+            null_ls.setup {
                 on_attach = function(client, bufnr)
                     if client.resolved_capabilities.document_formatting then
-                        vim.cmd("nnoremap <silent><buffer> <Leader>f :lua vim.lsp.buf.formatting()<CR>")
+                        vim.cmd "nnoremap <silent><buffer> <Leader>f :lua vim.lsp.buf.formatting()<CR>"
 
                         -- format on save
-                        vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()")
+                        vim.cmd "autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()"
                     end
 
                     if client.resolved_capabilities.document_range_formatting then
-                        vim.cmd("xnoremap <silent><buffer> <Leader>f :lua vim.lsp.buf.range_formatting({})<CR>")
+                        vim.cmd "xnoremap <silent><buffer> <Leader>f :lua vim.lsp.buf.range_formatting({})<CR>"
                     end
                 end,
-            })
+            }
 
-            local prettier = require("prettier")
+            local prettier = require "prettier"
 
-            prettier.setup({
-                bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
+            prettier.setup {
+                bin = "prettier", -- or `'prettierd'` (v0.23.3+)
                 filetypes = {
                     "css",
                     "graphql",
@@ -315,8 +366,8 @@ return {
                     "typescriptreact",
                     "yaml",
                 },
-            })
-        end
+            }
+        end,
     },
     -- {
     --     "stevearc/conform.nvim",

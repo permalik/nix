@@ -1,26 +1,26 @@
-require("plugins.colorizer")
-require("plugins.conform")
-require("plugins.debug")
-require("plugins.fugitive")
-require("plugins.gitsigns")
-require("plugins.harpoon")
-require("plugins.haskell_tools")
-require("plugins.illuminate")
-require("plugins.indent_line")
-require("plugins.jdtls")
-require("plugins.kanagawa")
-require("plugins.lsp")
-require("plugins.lualine")
-require("plugins.mini")
-require("plugins.nord")
-require("plugins.nordic")
-require("plugins.obsession")
-require("plugins.rose_pine")
-require("plugins.roslyn")
-require("plugins.telescope")
-require("plugins.todo_comments")
-require("plugins.treesitter")
-require("plugins.trouble")
-require("plugins.undotree")
-require("plugins.vimtex")
-require("plugins.whichkey")
+require "plugins.colorizer"
+require "plugins.conform"
+require "plugins.debug"
+require "plugins.fugitive"
+require "plugins.gitsigns"
+require "plugins.harpoon"
+require "plugins.haskell_tools"
+require "plugins.illuminate"
+require "plugins.indent_line"
+require "plugins.jdtls"
+require "plugins.kanagawa"
+require "plugins.lsp"
+require "plugins.lualine"
+require "plugins.mini"
+require "plugins.nord"
+require "plugins.nordic"
+require "plugins.obsession"
+require "plugins.rose_pine"
+require "plugins.roslyn"
+require "plugins.telescope"
+require "plugins.todo_comments"
+require "plugins.treesitter"
+require "plugins.trouble"
+require "plugins.undotree"
+require "plugins.vimtex"
+require "plugins.whichkey"

@@ -3,7 +3,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-        require("nordic").setup({
+        require("nordic").setup {
             on_highlight = function(highlights, palette)
                 highlights.Visual = { bg = palette.gray3 }
                 highlights.VisualLine = { bg = palette.gray3 }
@@ -19,8 +19,8 @@ return {
                 --     undercurl = false
                 -- }
             end,
-        })
+        }
         require("nordic").load()
-        vim.cmd 'colorscheme nordic'
-    end
+        vim.cmd "colorscheme nordic"
+    end,
 }
