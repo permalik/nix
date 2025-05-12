@@ -3,7 +3,7 @@
 
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
- 		nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+		nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 		nixcats.url = "github:birdeehub/nixcats-nvim";
 		home-manager = {
 			url = "github:nix-community/home-manager/release-24.11";
@@ -27,47 +27,47 @@
 	let
 		inherit (self) outputs;
 
-		users = {
-			permalik = {
-				name = "permalik";
-				email = "permalik@protonmail.com";
+	users = {
+		permalik = {
+			name = "permalik";
+			email = "permalik@protonmail.com";
+		};
+		tymalik = {
+			name = "tymalik";
+			email = "permalik@protonmail.com";
+		};
+	};
+
+	mkNixosConfiguration = hostname: username:
+		nixpkgs.lib.nixosSystem {
+			system = "x86_64-linux";
+			specialArgs = {
+				inherit inputs outputs;
+				userConfig = users.${username};
 			};
-			tymalik = {
-				name = "tymalik";
-				email = "permalik@protonmail.com";
-			};
+			modules = [./hosts/${hostname}];
 		};
 
-		mkNixosConfiguration = hostname: username:
-			nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";
-				specialArgs = {
-					inherit inputs outputs;
-					userConfig = users.${username};
-				};
-				modules = [./hosts/${hostname}];
+	mkOrbstackConfiguration = hostname: username:
+		nixpkgs.lib.nixosSystem {
+			system = "aarch64-linux";
+			specialArgs = {
+				inherit inputs outputs;
+				userConfig = users.${username};
 			};
-
-		mkOrbstackConfiguration = hostname: username:
-			nixpkgs.lib.nixosSystem {
-				system = "aarch64-linux";
-				specialArgs = {
-					inherit inputs outputs;
-					userConfig = users.${username};
-				};
-				modules = [
-					./hosts/${hostname}/configuration.nix
+			modules = [
+				./hosts/${hostname}/configuration.nix
 					./hosts/${hostname}/orbstack.nix
 					home-manager.nixosModules.home-manager
 					{
 						home-manager = {
 							useGlobalPkgs = true;
-          						useUserPackages = true;
+							useUserPackages = true;
 
-          						users.tymalik = {
+							users.tymalik = {
 								imports = [
-									{home.stateVersion = "24.11";}
-									./home-manager/programs/git
+								{home.stateVersion = "24.11";}
+								./home-manager/programs/git
 									./home-manager/programs/packages
 									./home-manager/programs/tmux
 								];
@@ -81,45 +81,45 @@
 							};
 						};
 					}
-				];
-			};
+			];
+		};
 
-		mkDarwinConfiguration = hostname: username:
-			darwin.lib.darwinSystem {
-				system = "aarch64-darwin";
-				specialArgs = {
-					inherit inputs outputs;
-					userConfig = users.${username};
-				};
-				modules = [
-					./hosts/${hostname}
-					home-manager.darwinModules.home-manager
-				];
+	mkDarwinConfiguration = hostname: username:
+		darwin.lib.darwinSystem {
+			system = "aarch64-darwin";
+			specialArgs = {
+				inherit inputs outputs;
+				userConfig = users.${username};
 			};
+			modules = [
+				./hosts/${hostname}
+			home-manager.darwinModules.home-manager
+			];
+		};
 
-		mkHomeConfiguration = system: username: hostname:
-			home-manager.lib.homeManagerConfiguration {
-				pkgs = nixpkgs.legacyPackages.${system};
-				extraSpecialArgs = {
-					inherit inputs outputs;
-					userConfig = users.${username};
-					homeModules = {
-						core_mac = import ./home-manager/core_mac;
-					};
+	mkHomeConfiguration = system: username: hostname:
+		home-manager.lib.homeManagerConfiguration {
+			pkgs = nixpkgs.legacyPackages.${system};
+			extraSpecialArgs = {
+				inherit inputs outputs;
+				userConfig = users.${username};
+				homeModules = {
+					core_mac = import ./home-manager/core_mac;
 				};
-				modules = [./home/${hostname}];
 			};
+			modules = [./home/${hostname}];
+		};
 
 	in {	
 		nixosConfigurations = {
 			nixos = mkNixosConfiguration "linux" "permalik";
 			orbstack = mkOrbstackConfiguration "orbstack" "tymalik";
 		};
-		
+
 		darwinConfigurations = {
 			tymalik = mkDarwinConfiguration "mac" "tymalik";
 		};
-		
+
 		homeConfigurations = {
 			"permalik@nixos" = mkHomeConfiguration "x86_64-linux" "permalik" "linux";
 			"tymalik@orbstack" = mkHomeConfiguration "aarch64-linux" "tymalik" "orbstack";

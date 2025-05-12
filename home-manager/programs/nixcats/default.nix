@@ -12,6 +12,9 @@ in {
       categoryDefinitions.replace = ({ pkgs, settings, categories, extra, name, mkPlugin, ... }@packageDef: {
         lspsAndRuntimeDeps = {
 	  general = with pkgs; [
+	    universal-ctags
+	    ripgrep
+	    fd
 	    lazygit
 	  ];
 	  lua = with pkgs; [
@@ -21,6 +24,9 @@ in {
 	  nix = with pkgs; [
 	    nixd
 	    alejandra
+	  ];
+	  rust = with pkgs; [
+	    rust-analyzer
 	  ];
 	  go = with pkgs; [
 	    gopls
@@ -34,14 +40,42 @@ in {
 	};
 	startupPlugins = {
 	  general = with pkgs.vimPlugins; [
-	    lze
+	    # blink-cmp
+	    colorizer
+	    conform-nvim
+	    gitsigns-nvim
+	    harpoon2
+	    haskell-tools-nvim
+	    indentLine
+	    kanagawa-nvim
+	    lualine-nvim
+	    lualine-lsp-progress
+	    # lze
 	    # lzextras
-	    snacks-nvim
-	    rose-pine
+	    mini-nvim
 	    nord-nvim
 	    nordic-nvim
-	    kanagawa-nvim
+	    nvim-dap
+	    nvim-dap-ui
+	    nvim-dap-virtual-text
+	    nvim-jdtls
+	    nvim-lint
+	    nvim-lspconfig
+	    nvim-treesitter.withAllGrammars
+	    plenary-nvim
+	    roslyn-nvim
+	    rose-pine
+	    # snacks-nvim
+	    telescope-nvim
+	    todo-comments-nvim
+	    trouble-nvim
+	    undotree
+	    vim-illuminate
+	    vim-obsession
 	    vim-sleuth
+	    vim-startuptime
+	    vimtex
+	    which-key-nvim
 	  ];
 	};
 	optionalPlugins = {
@@ -52,20 +86,6 @@ in {
 	    lazydev-nvim
 	  ];
 	  general = with pkgs.vimPlugins; [
-	    mini-nvim
-	    nvim-lspconfig
-	    vim-startuptime
-	    blink-cmp
-	    nvim-treesitter.withAllGrammars
-	    lualine-nvim
-	    lualine-lsp-progress
-	    gitsigns-nvim
-	    which-key-nvim
-	    nvim-lint
-	    conform-nvim
-	    nvim-dap
-	    nvim-dap-ui
-	    nvim-dap-virtual-text
 	  ];
 	};
 	sharedLibraries = {

@@ -5,34 +5,34 @@
 { lib, config, ... }:
 
 {
-  # Add OrbStack CLI tools to PATH
+# Add OrbStack CLI tools to PATH
   environment.shellInit = ''
     . /opt/orbstack-guest/etc/profile-early
 
-    # add your customizations here
+# add your customizations here
 
     . /opt/orbstack-guest/etc/profile-late
-  '';
+    '';
 
-  # Enable documentation
+# Enable documentation
   documentation.man.enable = true;
   documentation.doc.enable = true;
   documentation.info.enable = true;
 
-  # Disable systemd-resolved
+# Disable systemd-resolved
   services.resolved.enable = false;
   environment.etc."resolv.conf".source = "/opt/orbstack-guest/etc/resolv.conf";
 
-  # Faster DHCP - OrbStack uses SLAAC exclusively
+# Faster DHCP - OrbStack uses SLAAC exclusively
   networking.dhcpcd.extraConfig = ''
     noarp
     noipv6
-  '';
+    '';
 
-  # Disable sshd
+# Disable sshd
   services.openssh.enable = false;
 
-  # systemd
+# systemd
   systemd.services."systemd-oomd".serviceConfig.WatchdogSec = 0;
   systemd.services."systemd-userdbd".serviceConfig.WatchdogSec = 0;
   systemd.services."systemd-udevd".serviceConfig.WatchdogSec = 0;
@@ -52,14 +52,14 @@
   systemd.services."systemd-homed".serviceConfig.WatchdogSec = 0;
   systemd.services."systemd-networkd".serviceConfig.WatchdogSec = lib.mkIf config.systemd.network.enable 0;
 
-  # ssh config
+# ssh config
   programs.ssh.extraConfig = ''
     Include /opt/orbstack-guest/etc/ssh_config
-  '';
+    '';
 
-  # indicate builder support for emulated architectures
+# indicate builder support for emulated architectures
   nix.settings.extra-platforms = [
     "x86_64-linux"
-    "i686-linux"
+      "i686-linux"
   ];
 }
