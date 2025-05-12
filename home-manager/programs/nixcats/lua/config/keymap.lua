@@ -9,12 +9,11 @@ vim.keymap.set("n", "Q", "<nop>")
 -- go to netrw file browser
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>?", function()
-    require("which-key").show({ global = false })
+    require("which-key").show { global = false }
 end, {
     desc = "buffer local keymaps (which-key)",
     silent = true,
 })
-
 
 -- transparent editor
 vim.keymap.set("n", "<leader>c0", ":hi Normal guibg=NONE ctermbg=NONE<cr>", {
@@ -54,21 +53,32 @@ vim.keymap.set("n", "<leader>c8", ":colorscheme kanagawa-lotus<cr>", {
     desc = "set [c]olorscheme 8: kanagawa-lotus",
     silent = true,
 })
+
+-- Undotree
+vim.keymap.set("n", "<leader>uu", "<CMD>UndotreeToggle<CR>", {
+    desc = "[uu]ndotree",
+})
+vim.keymap.set("n", "<leader>ud", "<CMD>UndotreeShowDiff<CR>", { desc = "[u]ndotree [d]iff" })
+vim.keymap.set("n", "<leader>uc", "<CMD>UndotreeClear<CR>", {
+    desc = "[u]ndotree clear",
+})
+
+-- Fugitive
 vim.keymap.set("n", "<leader>fg", ":Git<cr>", {
     desc = "[f]ugitive [g]it interface",
     silent = true,
 })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", {
-	desc = "cursor in middle of screen when moving down",
-	silent = true,
+    desc = "cursor in middle of screen when moving down",
+    silent = true,
 })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", {
-	desc = "cursor in middle of screen when moving up",
-	silent = true,
+    desc = "cursor in middle of screen when moving up",
+    silent = true,
 })
 vim.keymap.set("n", "J", "mzJ`z", {
-	desc = "keep J in place when appending",
-	silent = true,
+    desc = "keep J in place when appending",
+    silent = true,
 })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {
     desc = "move selected blocks of text with proper indenting",
@@ -79,20 +89,20 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {
     silent = true,
 })
 vim.keymap.set("n", "<C-h>", "<C-w>h", {
-	desc = "improved left window navigation",
-	silent = true,
+    desc = "improved left window navigation",
+    silent = true,
 })
 vim.keymap.set("n", "<C-j>", "<C-w>j", {
-	desc = "improved down window navigation",
-	silent = true,
+    desc = "improved down window navigation",
+    silent = true,
 })
 vim.keymap.set("n", "<C-k>", "<C-w>k", {
-	desc = "improved up window navigation",
-	silent = true,
+    desc = "improved up window navigation",
+    silent = true,
 })
 vim.keymap.set("n", "<C-l>", "<C-w>l", {
-	desc = "improved right window navigation",
-	silent = true,
+    desc = "improved right window navigation",
+    silent = true,
 })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, {
     desc = "open diagnostic [q]uickfix list",
@@ -115,5 +125,5 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 -- TERMINAL
 --
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", {
-	desc = "exit terminal mode",
+    desc = "exit terminal mode",
 })
