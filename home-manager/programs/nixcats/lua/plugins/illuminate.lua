@@ -1,5 +1,4 @@
-return {
-    "RRethy/vim-illuminate",
+require("illuminate").configure {
     filetypes_denylist = {
         "cabal",
     },
