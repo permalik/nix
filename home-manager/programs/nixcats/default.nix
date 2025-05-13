@@ -54,7 +54,7 @@ in {
             gitsigns-nvim
             harpoon2
             haskell-tools-nvim
-            indentLine
+            indent-blankline-nvim
             kanagawa-nvim
             lualine-nvim
             lualine-lsp-progress
