@@ -49,7 +49,7 @@ in {
         startupPlugins = {
           general = with pkgs.vimPlugins; [
             # blink-cmp
-            colorizer
+            nvim-colorizer-lua
             conform-nvim
             gitsigns-nvim
             harpoon2
