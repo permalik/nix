@@ -78,6 +78,7 @@ in {
             todo-comments-nvim
             trouble-nvim
             undotree
+            vim-fugitive
             vim-illuminate
             vim-obsession
             vim-sleuth
