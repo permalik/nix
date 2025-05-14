@@ -1,5 +1,13 @@
 {inputs, ...}: let
   utils = inputs.nixCats.utils;
+  dependencyOverlays =
+    (import ./overlays inputs)
+    ++ [
+      (utils.standardPluginOverlay inputs)
+      (final: prev: {
+        blink-cmp-flake = inputs.blink-cmp.packages.${final.system}.default;
+      })
+    ];
 in {
   imports = [
     inputs.nixcats.homeModule
@@ -49,20 +57,27 @@ in {
         startupPlugins = {
           general = with pkgs.vimPlugins; [
             # blink-cmp
-            nvim-colorizer-lua
+            cmp-nvim-lsp
             conform-nvim
             gitsigns-nvim
             harpoon2
             haskell-tools-nvim
             indent-blankline-nvim
             kanagawa-nvim
+            lspkind-nvim
             lualine-nvim
             lualine-lsp-progress
+            luasnip
             # lze
             # lzextras
             mini-nvim
+            none-ls-nvim
             nord-nvim
             nordic-nvim
+            null-ls-nvim
+            nvim-autopairs
+            nvim-cmp
+            nvim-colorizer-lua
             nvim-dap
             nvim-dap-ui
             nvim-dap-virtual-text
@@ -81,6 +96,7 @@ in {
             vim-fugitive
             vim-illuminate
             vim-obsession
+            vim-prettier
             vim-sleuth
             vim-startuptime
             vimtex

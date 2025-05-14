@@ -1,5 +1,4 @@
-return {
-    "folke/trouble.nvim",
+require("trouble").setup {
     opts = {},
     cmd = "Trouble",
     keys = {
