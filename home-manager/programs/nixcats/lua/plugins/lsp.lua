@@ -154,7 +154,6 @@ local servers = {
     slint_lsp = {},
     -- "sqlls",
     -- "sqls",
-    "stylua",
     -- npm install -g svelte-language-server
     svelte = {},
     -- npm install -g @tailwindcss/language-server
@@ -213,6 +212,7 @@ require("lspconfig").lua_ls.setup {
             },
             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
             diagnostics = {
+                globals = { "vim" },
                 disable = {
                     "missing-fields",
                     "lowercase-global",
