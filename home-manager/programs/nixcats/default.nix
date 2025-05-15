@@ -28,10 +28,11 @@ in {
       } @ packageDef: {
         lspsAndRuntimeDeps = {
           general = with pkgs; [
-            universal-ctags
-            ripgrep
             fd
+            fzf
             lazygit
+            ripgrep
+            universal-ctags
           ];
           lua = with pkgs; [
             lua-language-server
