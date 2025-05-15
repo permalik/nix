@@ -20,3 +20,15 @@ require("fzf-lua").setup {
         actions = { ["ctrl-x"] = false, ["ctrl-d"] = { actions.buf_del, actions.resume } },
     },
 }
+vim.keymap.set(
+    "n",
+    "<leader>sf",
+    "<cmd>lua require('fzf-lua').files()<CR>",
+    { desc = "[S]earch [F]iles" }
+)
+vim.keymap.set(
+    "n",
+    "<leader>sg",
+    "<cmd>lua require('fzf-lua').live_grep_native({search = ''})<CR>",
+    { desc = "[S]earch [G]rep" }
+)

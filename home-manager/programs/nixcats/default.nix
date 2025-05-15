@@ -60,6 +60,7 @@ in {
             # blink-cmp
             cmp-nvim-lsp
             conform-nvim
+            fzf-lua
             gitsigns-nvim
             harpoon2
             haskell-tools-nvim
