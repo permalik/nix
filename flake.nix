@@ -92,6 +92,7 @@
         };
         modules = [
           ./hosts/${hostname}
+          (import ./modules/system_packages.nix)
           home-manager.darwinModules.home-manager
         ];
       };
