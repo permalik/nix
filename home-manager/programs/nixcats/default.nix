@@ -79,11 +79,13 @@ in {
             nvim-cmp
             nvim-colorizer-lua
             nvim-dap
+            nvim-dap-go
             nvim-dap-ui
             nvim-dap-virtual-text
             nvim-jdtls
             nvim-lint
             nvim-lspconfig
+            nvim-nio
             nvim-treesitter.withAllGrammars
             plenary-nvim
             roslyn-nvim
@@ -104,9 +106,7 @@ in {
           ];
         };
         optionalPlugins = {
-          go = with pkgs.vimPlugins; [
-            nvim-dap-go
-          ];
+          go = with pkgs.vimPlugins; [];
           lua = with pkgs.vimPlugins; [
             lazydev-nvim
           ];
