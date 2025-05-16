@@ -16,7 +16,7 @@ darwin_hm:
 
 .PHONY: orb_flake
 orb_flake:
-	darwin-rebuild switch --flake .#orb
+	nixos-rebuild switch --flake .#orb
 
 .PHONY: orb_hm
 orb_hm:
