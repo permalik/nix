@@ -47,7 +47,7 @@
     vim
     curl
     wget
-    make
+    gnumake
   ];
   # Set the default editor to vim
   environment.variables.EDITOR = "vim";
