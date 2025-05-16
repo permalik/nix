@@ -20,9 +20,6 @@
   };
 
   home.packages = with pkgs; [
-    alejandra
-    jdt-language-server
-    stylua
     /*
     # Compression
     zip

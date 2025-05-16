@@ -28,36 +28,57 @@ in {
       } @ packageDef: {
         lspsAndRuntimeDeps = {
           general = with pkgs; [
+            alejandra
+            black
+            cargo
+            ccls
+            delta
+            dockerfile-language-server-nodejs
             fd
             fzf
-            lazygit
-            ripgrep
-            universal-ctags
-          ];
-          lua = with pkgs; [
-            lua-language-server
-            stylua
-          ];
-          nix = with pkgs; [
-            nixd
-            alejandra
-          ];
-          rust = with pkgs; [
-            rust-analyzer
-          ];
-          go = with pkgs; [
+            gcc
+            go
             gopls
             delve
             golint
             golangci-lint
             gotools
             go-tools
-            go
+            haskellPackages.haskell-language-server
+            isort
+            jdt-language-server
+            ltex-ls
+            lua-language-server
+            nil
+            nixd
+            nixfmt-rfc-style
+            nodePackages.eslint
+            nodePackages.sql-formatter
+            nodePackages.typescript-language-server
+            nodejs
+            ocamlPackages.ocaml-lsp
+            postgresql
+            prettierd
+            pyright
+            ripgrep
+            rust-analyzer
+            rustfmt
+            shellcheck
+            shfmt
+            stylua
+            tailwindcss-language-server
+            terraform-ls
+            tree-sitter
+            universal-ctags
+            vscode-langservers-extracted
+            xsel
+            yaml-language-server
+          ];
+          go = with pkgs; [
           ];
         };
         startupPlugins = {
           general = with pkgs.vimPlugins; [
-            # blink-cmp
             cmp-nvim-lsp
             conform-nvim
             fzf-lua
@@ -70,8 +91,6 @@ in {
             lualine-nvim
             lualine-lsp-progress
             luasnip
-            # lze
-            # lzextras
             mini-nvim
             none-ls-nvim
             nord-nvim
@@ -92,7 +111,6 @@ in {
             plenary-nvim
             roslyn-nvim
             rose-pine
-            # snacks-nvim
             telescope-nvim
             todo-comments-nvim
             trouble-nvim
@@ -109,11 +127,8 @@ in {
         };
         optionalPlugins = {
           go = with pkgs.vimPlugins; [];
-          lua = with pkgs.vimPlugins; [
-            lazydev-nvim
-          ];
-          general = with pkgs.vimPlugins; [
-          ];
+          lua = with pkgs.vimPlugins; [];
+          general = with pkgs.vimPlugins; [];
         };
         sharedLibraries = {
           general = with pkgs; [];
