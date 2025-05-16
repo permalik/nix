@@ -1,6 +1,6 @@
 {homeModules, ...}: {
   imports = [
-    "${homeModules}/core_orbstack"
+    homeModules.core_orbstack
   ];
 
   # Enable Home-Manager

@@ -64,14 +64,11 @@
               useGlobalPkgs = true;
               useUserPackages = true;
 
-              users.tymalik = {
-                imports = [
-                  {home.stateVersion = "24.11";}
-                  # ./home-manager/programs/git
-                  # ./home-manager/programs/packages
-                  # ./home-manager/programs/tmux
-                ];
-              };
+              # users.tymalik = {
+              #   imports = [
+              #     {home.stateVersion = "24.11";}
+              #   ];
+              # };
               extraSpecialArgs = {
                 inherit inputs outputs nixpkgs-unstable;
                 userConfig = {
@@ -98,17 +95,26 @@
         ];
       };
 
-    mkHomeConfiguration = system: username: hostname:
+    mkHomeConfiguration = system: username: hostname: cfg: let
+      # cfgModules = {
+      #   core_orbstack = import ./home-manager/core_orbstack;
+      #   core_mac = import ./home-manager/core_orbstack;
+      # };
+      # selectedModule = cfgModules.${cfg};
+    in
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = {
           inherit inputs outputs;
           userConfig = users.${username};
           homeModules = {
-            core_mac = import ./home-manager/core_mac;
+            core_orbstack = import ./home-manager/core_orbstack;
           };
+          # homeModules = selectedModule;
         };
-        modules = [./home/${hostname}];
+        modules = [
+          ./home/${hostname}
+        ];
       };
   in {
     nixosConfigurations = {
@@ -122,20 +128,8 @@
 
     homeConfigurations = {
       "permalik@nixos" = mkHomeConfiguration "x86_64-linux" "permalik" "linux";
-      "permalik@orb" = mkHomeConfiguration "aarch64-linux" "tymalik" "orbstack";
-      "permalik@mac" = mkHomeConfiguration "aarch64-darwin" "tymalik" "mac";
+      "permalik@orb" = mkHomeConfiguration "aarch64-linux" "tymalik" "orbstack" "core_orbstack";
+      "permalik@mac" = mkHomeConfiguration "aarch64-darwin" "tymalik" "mac" "core_mac";
     };
-
-    /*
-    modules = [
-    ./configuration.nix
-    home-manager.nixosModules.home-manager
-    {
-    home-manager.useGlobalPkgs = true;
-    home-manager.useUserPackages = true;
-    home-manager.users.permalik = import ./home.nix;
-    }
-    ];
-    */
   };
 }
