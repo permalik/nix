@@ -7,7 +7,7 @@
   ...
 }: {
   imports = [
-    ../programs/git
+    # ../programs/git
     ../programs/nvim
     ../programs/nixcats
   ];
@@ -19,9 +19,9 @@
 
   home.packages = with pkgs; [
     # Compression
+    /*
     zip
     unzip
-    /*
     xz
     # zstd
     # p7zip

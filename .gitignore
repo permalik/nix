@@ -1,11 +1,1 @@
-#!/run/current-system/sw/bin/bash
-# Update Flake
-cd /etc/nixos
-sudo nix flake update
-
-if [ $? -eq 0 ]; then
-	echo "Success: Flake update complete."
-then
-	echo "Failed: Flake update incomplete."
-	exit 1
-fi
+flake.lock

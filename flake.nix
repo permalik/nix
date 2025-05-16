@@ -57,6 +57,7 @@
         modules = [
           ./hosts/${hostname}/configuration.nix
           ./hosts/${hostname}/orbstack.nix
+          (import ./modules/system_packages.nix)
           home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -66,15 +67,15 @@
               users.tymalik = {
                 imports = [
                   {home.stateVersion = "24.11";}
-                  ./home-manager/programs/git
-                  ./home-manager/programs/packages
-                  ./home-manager/programs/tmux
+                  # ./home-manager/programs/git
+                  # ./home-manager/programs/packages
+                  # ./home-manager/programs/tmux
                 ];
               };
               extraSpecialArgs = {
                 inherit inputs outputs nixpkgs-unstable;
                 userConfig = {
-                  name = "permalik";
+                  name = "tymalik";
                   email = "permalik@protonmail.com";
                 };
               };
@@ -112,17 +113,17 @@
   in {
     nixosConfigurations = {
       nixos = mkNixosConfiguration "linux" "permalik";
-      orbstack = mkOrbstackConfiguration "orbstack" "tymalik";
+      orb = mkOrbstackConfiguration "orbstack" "tymalik";
     };
 
     darwinConfigurations = {
-      tymalik = mkDarwinConfiguration "mac" "tymalik";
+      mac = mkDarwinConfiguration "mac" "tymalik";
     };
 
     homeConfigurations = {
       "permalik@nixos" = mkHomeConfiguration "x86_64-linux" "permalik" "linux";
-      "tymalik@orbstack" = mkHomeConfiguration "aarch64-linux" "tymalik" "orbstack";
-      "permalik@permalik" = mkHomeConfiguration "aarch64-darwin" "tymalik" "mac";
+      "permalik@orb" = mkHomeConfiguration "aarch64-linux" "tymalik" "orbstack";
+      "permalik@mac" = mkHomeConfiguration "aarch64-darwin" "tymalik" "mac";
     };
 
     /*
