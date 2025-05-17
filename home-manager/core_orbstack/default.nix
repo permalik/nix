@@ -7,9 +7,9 @@
   ...
 }: {
   imports = [
-    # ../programs/git
+    # ../programs/nixcats
     ../programs/nvim
-    ../programs/nixcats
+    ../programs/tmux
   ];
 
   home = {
