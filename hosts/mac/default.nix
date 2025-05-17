@@ -6,21 +6,22 @@
 }: {
   # Nixpkgs configuration
   nixpkgs = {
-    /*
-    overlays = [
-    outputs.overlays.stable-packages
-    ];
-    */
+    # overlays = [
+    #   outputs.overlays.unstable-packages
+    # ];
 
-    config = {
-      allowUnfree = true;
-    };
+    # config = {
+    #  allowUnfree = true;
+    # };
   };
 
   # Nix settings
   nix = {
     settings = {
       experimental-features = "nix-command flakes";
+      substituters = ["https://cache.nixos.org/"];
+      fallback = false;
+      download-buffer-size = "150M";
     };
     # optimise.automatic = true;
     package = pkgs.nix;
@@ -31,6 +32,10 @@
     name = "${userConfig.name}";
     home = "/Users/tymalik";
   };
+
+  environment.systemPackages = with pkgs; [
+	nodejs-slim
+  ];
 
   /*
   # Add ability to use TouchID for sudo

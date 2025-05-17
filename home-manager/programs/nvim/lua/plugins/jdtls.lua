@@ -1,6 +1,6 @@
 local config = {
     cmd = {
-        vim.fn.expand "/nix/store/wc35zl1h89svlzvama8q0zx6z33v0pxz-jdt-language-server-1.40.0/bin/jdtls",
+        vim.fn.expand "/nix/store/davh9mjzhmjj2fqj7r2rmfciw7zjn0wb-jdt-language-server-1.40.0/bin/jdtls",
     },
     root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
 }

@@ -11,7 +11,7 @@
     ../programs/git
     */
     ../programs/nvim
-    ../programs/nixcats
+    # ../programs/nixcats
   ];
 
   home = {

@@ -13,6 +13,10 @@
       url = "github:LnL7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vim-plugins = {
+    	url = "path:./modules/plugins";
+	inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -22,6 +26,7 @@
     nixcats,
     darwin,
     home-manager,
+    vim-plugins,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -36,6 +41,18 @@
         email = "permalik@protonmail.com";
       };
     };
+
+    overlays = [
+      vim-plugins.overlay
+      # unstable-packages = final: prev: {
+      #   unstable = import inputs.nixpkgs-unstable {
+      #     system = prev.system;
+      #     config.allowUnfree = true;
+      #   };
+      #
+      #   nodejs_24 = final.unstable.nodejs_24;
+      # };
+    ];
 
     mkNixosConfiguration = hostname: username:
       nixpkgs.lib.nixosSystem {
@@ -101,14 +118,20 @@
       #   core_mac = import ./home-manager/core_orbstack;
       # };
       # selectedModule = cfgModules.${cfg};
+      pkgs = import nixpkgs {
+	inherit system;
+	overlays = overlays;
+	config.allowUnfree = true;
+      };
     in
       home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+	inherit pkgs;
+        # pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = {
           inherit inputs outputs;
           userConfig = users.${username};
           homeModules = {
-            core_orbstack = import ./home-manager/core_orbstack;
+            core_mac = import ./home-manager/core_mac;
           };
           # homeModules = selectedModule;
         };
@@ -117,6 +140,8 @@
         ];
       };
   in {
+    overlays = overlays;
+
     nixosConfigurations = {
       nixos = mkNixosConfiguration "linux" "permalik";
       orb = mkOrbstackConfiguration "orbstack" "tymalik";

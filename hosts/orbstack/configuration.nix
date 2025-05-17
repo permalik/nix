@@ -39,7 +39,15 @@
     useDefaultShell = true;
   };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix = {
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+      substituters = [
+        "https://cache.nixos.org/"
+      ];
+      fallback = false;
+    };
+  };
   environment.systemPackages = with pkgs; [
     # Flakes clones its dependencies through the git command,
     # so git must be installed first
@@ -48,6 +56,7 @@
     curl
     wget
     gnumake
+    nodejs_24
   ];
   # Set the default editor to vim
   environment.variables.EDITOR = "vim";
