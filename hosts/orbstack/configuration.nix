@@ -56,7 +56,7 @@
     curl
     wget
     gnumake
-    nodejs_24
+    nodejs-slim
   ];
   # Set the default editor to vim
   environment.variables.EDITOR = "vim";

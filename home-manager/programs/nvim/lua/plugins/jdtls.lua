@@ -1,7 +1,29 @@
+local function find_jdtls_path()
+    local handle = io.popen "fd -H -t f -x realpath jdtls /nix/store 2>/dev/null"
+    if not handle then
+        return nil
+    end
+
+    local result = handle:read "*a"
+    handle:close()
+
+    local path = result:gsub("^%s+", ""):gsub("%s+$", "")
+    if path ~= "" and vim.fn.filereadable(path) == 1 then
+        return vim.fn.expand(path)
+    end
+
+    return nil
+end
+
+local jdtls_path = find_jdtls_path()
+
+if not jdtls_path then
+    vim.notify("Could not locate jdtls using fd in /nix/store", vim.log.levels.ERROR)
+    return
+end
+
 local config = {
-    cmd = {
-        vim.fn.expand "/nix/store/davh9mjzhmjj2fqj7r2rmfciw7zjn0wb-jdt-language-server-1.40.0/bin/jdtls",
-    },
+    cmd = { jdtls_path },
     root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
 }
 require("jdtls").start_or_attach(config)

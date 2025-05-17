@@ -1,4 +1,4 @@
-alias list_pkg = "nix-store -q --references /run/current-system | grep -vE '^/nix/store/.+-man$'"
+alias list_pkg="nix-store -q --references /run/current-system | grep -vE '^/nix/store/.+-man$'"
 # get path
 # nix eval --raw nixpkgs#jdt-language-server.outPath
 
@@ -8,7 +8,8 @@ alias list_pkg = "nix-store -q --references /run/current-system | grep -vE '^/ni
 # Delete all unused paths
 # nix-collect-garbage -d
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  alias nv="/Users/tymalik/.nix-profile/bin/nvim"
+. /etc/os-release
+if [[ "$ID" == "nixos" && "$VERSION_ID" == "24.11" ]]; then
+  alias nv="/home/tymalik/.nix-profile/bin/nvim"
 fi
 

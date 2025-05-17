@@ -14,8 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vim-plugins = {
-    	url = "path:./modules/plugins";
-	inputs.nixpkgs.follows = "nixpkgs";
+      url = "path:./modules/plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -119,19 +119,19 @@
       # };
       # selectedModule = cfgModules.${cfg};
       pkgs = import nixpkgs {
-	inherit system;
-	overlays = overlays;
-	config.allowUnfree = true;
+        inherit system;
+        overlays = overlays;
+        config.allowUnfree = true;
       };
     in
       home-manager.lib.homeManagerConfiguration {
-	inherit pkgs;
+        inherit pkgs;
         # pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = {
           inherit inputs outputs;
           userConfig = users.${username};
           homeModules = {
-            core_mac = import ./home-manager/core_mac;
+            core_orbstack = import ./home-manager/core_orbstack;
           };
           # homeModules = selectedModule;
         };
