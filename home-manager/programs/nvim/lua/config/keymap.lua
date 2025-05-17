@@ -107,6 +107,8 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", {
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, {
     desc = "open diagnostic [q]uickfix list",
 })
+
+-- Navigation
 vim.keymap.set("n", "<up>", '<cmd>echo "use k to move"<CR>')
 vim.keymap.set("n", "<right>", '<cmd>echo "use l to move"<CR>')
 vim.keymap.set("n", "<down>", '<cmd>echo "use j to move"<CR>')
