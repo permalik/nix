@@ -132,6 +132,7 @@
           userConfig = users.${username};
           homeModules = {
             core_orbstack = import ./home-manager/core_orbstack;
+            core_mac = import ./home-manager/core_mac;
           };
           # homeModules = selectedModule;
         };
