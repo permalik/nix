@@ -62,13 +62,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-local on_attach = function(client)
-    require("nvim-cmp").on_attach(client)
-end
-
 local servers = {
     -- "ansiblels",
     "ccls",
+    -- npm install -g dockerfile-language-server-nodejs
     "dockerls",
     -- npm install -g @astrojs/language-server
     -- "arduino_language_server",
@@ -81,9 +78,7 @@ local servers = {
     cmake = {},
     -- "csharp",
     -- npm i -g vscode-langservers-extracted
-    cssls = {},
-    -- npm install -g dockerfile-language-server-nodejs
-    dockerls = {},
+    -- cssls = {},
     -- "elixirls",
     -- "elmls",
     -- npm install -g @olrtg/emmet-language-server
@@ -96,14 +91,14 @@ local servers = {
     gopls = {},
     -- "hls",
     -- npm i -g vscode-langservers-extracted
-    html = {},
+    -- html = {},
     -- cargo install htmx-lsp
     -- "htmx",
     -- "intelephense",
     -- "jinja_lsp",
     -- "jqls",
     -- npm i -g vscode-langservers-extracted
-    jsonls = {},
+    -- jsonls = {},
     -- kotlin_language_server = {},
     -- https://github.com/artempyanykh/marksman/releases
     marksman = {},
@@ -125,7 +120,7 @@ local servers = {
     -- "ruff",
     -- "ruff_lsp",
     -- https://github.com/rust-lang/rust-analyzer
-    rust_analyzer = {},
+    -- rust_analyzer = {},
     slint_lsp = {},
     -- "sqlls",
     -- "sqls",
