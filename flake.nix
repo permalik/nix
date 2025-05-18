@@ -43,15 +43,13 @@
     };
 
     overlays = [
+      (final: prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          system = prev.system;
+          config.allowUnfree = true;
+        };
+      })
       vim-plugins.overlay
-      # unstable-packages = final: prev: {
-      #   unstable = import inputs.nixpkgs-unstable {
-      #     system = prev.system;
-      #     config.allowUnfree = true;
-      #   };
-      #
-      #   nodejs_24 = final.unstable.nodejs_24;
-      # };
     ];
 
     mkNixosConfiguration = hostname: username:

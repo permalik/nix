@@ -3,6 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
+  outputs,
   pkgs,
   modulesPath,
   ...
@@ -14,6 +15,11 @@
 # };
 # in
 {
+  nixpkgs = {
+    overlays = outputs.overlays;
+    config.allowUnfree = true;
+  };
+
   imports = [
     # Include the default lxd configuration.
     "${modulesPath}/virtualisation/lxc-container.nix"
@@ -58,6 +64,7 @@
     wget
     gnumake
     nodejs-slim
+    unstable.zls
   ];
   # Set the default editor to vim
   environment.variables.EDITOR = "vim";

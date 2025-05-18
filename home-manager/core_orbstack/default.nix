@@ -18,7 +18,6 @@
   };
 
   home.packages = with pkgs; [
-    zls
     # Compression
     /*
     zip
