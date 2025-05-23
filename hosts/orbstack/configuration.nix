@@ -57,13 +57,16 @@
   environment.systemPackages = with pkgs; [
     # Flakes clones its dependencies through the git command,
     # so git must be installed first
+    cmake
+    curl
     git
+    gnumake
+    ninja
+    nodejs-slim
     tmux
     vim
-    curl
     wget
-    gnumake
-    nodejs-slim
+    unstable.llvmPackages_18.clang
     unstable.zls
   ];
   # Set the default editor to vim
