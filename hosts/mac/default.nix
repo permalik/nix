@@ -35,6 +35,7 @@
   environment.systemPackages = with pkgs; [
     go
     nodejs-slim
+    pnpm_9
   ];
 
   /*
