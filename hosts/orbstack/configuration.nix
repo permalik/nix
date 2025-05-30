@@ -63,6 +63,7 @@
     gnumake
     ninja
     nodejs-slim
+    rustup
     tmux
     vim
     wget
