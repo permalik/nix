@@ -66,7 +66,7 @@ require("nvim-treesitter.configs").setup {
     auto_install = false,
     highlight = {
         enable = true,
-        additional_vim_regex_highlighting = { "ruby" },
+        additional_vim_regex_highlighting = false,
     },
     indent = { enable = true, disable = { "ruby" } },
     parser_install_dir = vim.fn.stdpath "data" .. "/treesitter-parsers",

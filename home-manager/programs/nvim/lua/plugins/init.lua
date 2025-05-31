@@ -1,7 +1,6 @@
 require "plugins.colorizer"
 require "plugins.conform"
 require "plugins.debug"
--- require "plugins.fugitive"
 require "plugins.fzf"
 require "plugins.gitsigns"
 require "plugins.harpoon"
