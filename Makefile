@@ -26,6 +26,14 @@ orb_init_hm:
 orb_hm:
 	home-manager switch --flake .#permalik@orb
 
+.PHONY: par_init_hm
+par_init_hm:
+	nix run .#homeConfigurations.parallels@par.activationPackage --extra-experimental-features nix-command --extra-experimental-features flakes
+
+.PHONY: par_hm
+par_hm:
+	home-manager switch --flake .#parallels@par
+
 # install nix-darwin
 # nix run nix-darwin/nix-darwin-24.11#darwin-rebuild --extra-experimental-features "nix-command flakes" -- switch --flake .#permalik
 
