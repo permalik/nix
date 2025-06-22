@@ -34,6 +34,14 @@ par_init_hm:
 par_hm:
 	home-manager switch --flake .#parallels@par
 
+.PHONY: wsl_init_hm
+wsl_init_hm:
+	nix run .#homeConfigurations.permalik@wsl.activationPackage --extra-experimental-features nix-command --extra-experimental-features flakes
+
+.PHONY: wsl_hm
+wsl_hm:
+	home-manager switch --flake .#permalik@wsl
+
 # install nix-darwin
 # nix run nix-darwin/nix-darwin-24.11#darwin-rebuild --extra-experimental-features "nix-command flakes" -- switch --flake .#permalik
 

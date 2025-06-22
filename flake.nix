@@ -132,6 +132,7 @@
             core_orbstack = import ./home-manager/core_orbstack;
             core_mac = import ./home-manager/core_mac;
             core_parallels = import ./home-manager/core_parallels;
+            core_wsl = import ./home-manager/core_wsl;
           };
           # homeModules = selectedModule;
         };
@@ -146,6 +147,7 @@
       nixos = mkNixosConfiguration "linux" "permalik";
       orb = mkOrbstackConfiguration "orbstack" "tymalik";
       par = mkOrbstackConfiguration "ubuntu-linux-2404" "parallels";
+      wsl = mkOrbstackConfiguration "permalik-win" "permalik";
     };
 
     darwinConfigurations = {
@@ -157,6 +159,7 @@
       "permalik@orb" = mkHomeConfiguration "aarch64-linux" "tymalik" "orbstack" "core_orbstack";
       "permalik@mac" = mkHomeConfiguration "aarch64-darwin" "tymalik" "mac" "core_mac";
       "parallels@par" = mkHomeConfiguration "aarch64-linux" "parallels" "ubuntu-linux-2404" "core_parallels";
+      "permalik@wsl" = mkHomeConfiguration "x86_64-linux" "permalik" "permalik-win" "core_wsl";
     };
   };
 }
