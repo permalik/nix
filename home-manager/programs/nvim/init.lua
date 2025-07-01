@@ -1,11 +1,11 @@
 -- vim.opt.runtimepath:prepend("~/.nixdots/dotfiles/nvim")
-require("config.keymap")
-require("config.option")
-require("plugins")
+require "config.keymap"
+require "config.option"
+require "plugins"
 -- require("aegis").setup()
 
-if vim.fn.has("termguicolors") == 1 then
-  vim.opt.termguicolors = true
+if vim.fn.has "termguicolors" == 1 then
+    vim.opt.termguicolors = true
 end
 
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -15,6 +15,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank()
     end,
 })
+
+vim.filetype.add {
+    extension = {
+        yml = "yaml",
+    },
+}
 
 -- vim.api.nvim_create_autocmd("BufEnter", {
 --     pattern = "*.slint",
