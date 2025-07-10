@@ -34,6 +34,8 @@
 
   environment.systemPackages = with pkgs; [
     fzf
+    zig_0_13
+    rustup
     go
     nodejs-slim
     pnpm_9
