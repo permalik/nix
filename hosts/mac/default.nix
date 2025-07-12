@@ -37,7 +37,8 @@
     zig_0_13
     rustup
     go
-    nodejs-slim
+    nodejs_22
+    # nodejs-slim
     pnpm_9
   ];
 
