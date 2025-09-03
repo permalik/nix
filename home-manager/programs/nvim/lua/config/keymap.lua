@@ -53,6 +53,10 @@ vim.keymap.set("n", "<leader>c8", ":colorscheme kanagawa-lotus<cr>", {
     desc = "set [c]olorscheme 8: kanagawa-lotus",
     silent = true,
 })
+vim.keymap.set("n", "<leader>c9", ":colorscheme gruvbox-nvim<cr>", {
+    desc = "set [c]olorscheme 9: gruvbox-nvim",
+    silent = true,
+})
 
 -- Undotree
 vim.keymap.set("n", "<leader>uu", "<CMD>UndotreeToggle<CR>", {

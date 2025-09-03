@@ -16,6 +16,7 @@
       conform-nvim
       fzf-lua
       gitsigns-nvim
+      gruvbox-nvim
       harpoon2
       haskell-tools-nvim
       indent-blankline-nvim

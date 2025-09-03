@@ -168,7 +168,7 @@ require("lspconfig").html.setup {
     capabilities = capabilities,
 }
 
-require("lspconfig").jdtls.setup {}
+-- require("lspconfig").jdtls.setup {}
 
 require("lspconfig").jsonls.setup {
     capabilities = capabilities,

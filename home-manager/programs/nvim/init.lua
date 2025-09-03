@@ -73,4 +73,4 @@ vim.filetype.add {
 --         },
 --     },
 -- })
-vim.cmd "colorscheme rose-pine"
+vim.cmd "colorscheme gruvbox"
