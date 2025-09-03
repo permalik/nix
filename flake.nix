@@ -31,6 +31,21 @@
   } @ inputs: let
     inherit (self) outputs;
 
+    unstables = {
+      x86_64-linux = import nixpkgs-unstable {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+      aarch64-linux = import nixpkgs-unstable {
+        system = "aarch64-linux";
+        config.allowUnfree = true;
+      };
+      aarch64-darwin = import nixpkgs-unstable {
+        system = "aarch64-darwin";
+        config.allowUnfree = true;
+      };
+    };
+
     users = {
       permalik = {
         name = "permalik";
@@ -96,11 +111,12 @@
         ];
       };
 
-    mkDarwinConfiguration = hostname: username:
+    mkDarwinConfiguration = hostname: system: username:
       darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
+	inherit system;
         specialArgs = {
           inherit inputs outputs;
+          unstable = unstables.${system};
           userConfig = users.${username};
         };
         modules = [
@@ -121,12 +137,13 @@
         overlays = overlays;
         config.allowUnfree = true;
       };
+      unstable = unstables.${system};
     in
       home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         # pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs unstable;
           userConfig = users.${username};
           homeModules = {
             core_orbstack = import ./home-manager/core_orbstack;
@@ -151,7 +168,7 @@
     };
 
     darwinConfigurations = {
-      mac = mkDarwinConfiguration "mac" "tymalik";
+      mac = mkDarwinConfiguration "mac" "aarch64-darwin" "tymalik";
     };
 
     homeConfigurations = {

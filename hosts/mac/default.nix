@@ -1,46 +1,31 @@
-{
-  pkgs,
-  userConfig,
-  ...
-}: {
-  # Nixpkgs configuration
-  nixpkgs = {
-    # overlays = [
-    #   outputs.overlays.unstable-packages
-    # ];
+  { pkgs, unstable, userConfig, ... }: {
 
-    # config = {
-    #  allowUnfree = true;
-    # };
-  };
-
-  # Nix settings
-  nix = {
-    settings = {
-      experimental-features = "nix-command flakes";
-      substituters = ["https://cache.nixos.org/"];
-      fallback = false;
-      download-buffer-size = "150M";
+    nix = {
+      settings = {
+        experimental-features = "nix-command flakes";
+        substituters = ["https://cache.nixos.org/"];
+        fallback = false;
+        download-buffer-size = "150M";
+      };
+      # optimise.automatic = true;
+      package = pkgs.nix;
     };
-    # optimise.automatic = true;
-    package = pkgs.nix;
-  };
 
-  # User configuration
-  users.users.${userConfig.name} = {
-    name = "${userConfig.name}";
-    home = "/Users/tymalik";
-  };
+    # User configuration
+    users.users.${userConfig.name} = {
+      name = "${userConfig.name}";
+      home = "/Users/tymalik";
+    };
 
-  environment.systemPackages = with pkgs; [
-    fzf
-    zig_0_13
-    rustup
-    go
-    nodejs_22
-    # nodejs-slim
-    pnpm_9
-  ];
+    environment.systemPackages = with pkgs; [
+      fzf
+      rustup
+      go
+      nodejs_22
+      # nodejs-slim
+      pnpm_9
+      unstable.zig_0_14
+    ];
 
   /*
   # Add ability to use TouchID for sudo
