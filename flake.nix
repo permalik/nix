@@ -77,11 +77,12 @@
         modules = [./hosts/${hostname}];
       };
 
-    mkOrbstackConfiguration = hostname: username:
+    mkOrbstackConfiguration = hostname: system: username:
       nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
+        inherit system;
         specialArgs = {
           inherit inputs outputs;
+          unstable = unstables.${system};
           userConfig = users.${username};
         };
         modules = [
@@ -113,7 +114,7 @@
 
     mkDarwinConfiguration = hostname: system: username:
       darwin.lib.darwinSystem {
-	inherit system;
+        inherit system;
         specialArgs = {
           inherit inputs outputs;
           unstable = unstables.${system};
@@ -163,7 +164,7 @@
     nixosConfigurations = {
       nixos = mkNixosConfiguration "linux" "permalik";
       orb = mkOrbstackConfiguration "orbstack" "tymalik";
-      par = mkOrbstackConfiguration "ubuntu-linux-2404" "parallels";
+      par = mkOrbstackConfiguration "ubuntu-linux-2404" "aarch64-linux" "parallels";
       wsl = mkOrbstackConfiguration "permalik-win" "permalik";
     };
 
