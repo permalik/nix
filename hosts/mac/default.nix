@@ -25,6 +25,7 @@
       # nodejs-slim
       pnpm_9
       unstable.zig_0_14
+      ghostty
     ];
 
   /*
