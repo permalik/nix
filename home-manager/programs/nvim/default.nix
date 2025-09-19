@@ -28,7 +28,6 @@
       nordic-nvim
       null-ls-nvim
       nvim-autopairs
-      nvim-cmp
       nvim-colorizer-lua
       nvim-dap
       nvim-dap-go

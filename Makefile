@@ -26,13 +26,17 @@ orb_init_hm:
 orb_hm:
 	home-manager switch --flake .#permalik@orb
 
+.PHONY: par_flake
+par_flake:
+	sudo nixos-rebuild switch --flake .#par
+
 .PHONY: par_init_hm
 par_init_hm:
 	nix run .#homeConfigurations.parallels@par.activationPackage --extra-experimental-features nix-command --extra-experimental-features flakes
 
 .PHONY: par_hm
 par_hm:
-	home-manager switch --flake .#parallels@par
+	home-manager switch --flake .#parallels@par --extra-experimental-features nix-command --extra-experimental-features flakes
 
 .PHONY: wsl_init_hm
 wsl_init_hm:
