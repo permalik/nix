@@ -1,6 +1,6 @@
 {homeModules, ...}: {
   imports = [
-    "${homeModules}/core"
+    homeModules.core
   ];
 
   # Enable Home-Manager

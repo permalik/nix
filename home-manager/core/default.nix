@@ -4,12 +4,11 @@
   config,
   pkgs,
   userConfig,
+  unstable,
   ...
 }: {
   imports = [
-    ../programs/git
     ../programs/nvim
-    ../programs/nixcats
   ];
 
   home = {
@@ -18,53 +17,57 @@
   };
 
   home.packages = with pkgs; [
-    zip
-    unzip
+    starship
+    tmux
+    tree
+    unstable.zig_0_14
+    # brave
+    # unstable.ghostty
+    # Compression
+    /*
+    	   xz
+    # zstd
+    # p7zip
+
+    # Utils
+    ripgrep
+    fzf
+    jq
+    # yq-go
+    # eza
+
+    # Networking
+    # mtr
+    # iperf3
+    # dnsutils
+    # ldns
+    # aria2
+    # socat
+    # nmap
+    # ipcalc
+
+    # Monitoring
+    # lsof
+    # btop
+    # iotop
+    # iftop
+    # strace
+    # ltrace
+
+    # Nix
+    # nix-output-monitor
+
+    # Other
+    # cowsay
+    # file
+    # which
+    # tree
+    # gnused
+    # gnutar
+    # gawk
+    # gnupg
+    # hugo
+    # glow
+    */
   ];
-  # Compression
-  /*
-  	   xz
-  # zstd
-  # p7zip
-
-  # Utils
-  ripgrep
-  fzf
-  jq
-  # yq-go
-  # eza
-
-  # Networking
-  # mtr
-  # iperf3
-  # dnsutils
-  # ldns
-  # aria2
-  # socat
-  # nmap
-  # ipcalc
-
-  # Monitoring
-  # lsof
-  # btop
-  # iotop
-  # iftop
-  # strace
-  # ltrace
-
-  # Nix
-  # nix-output-monitor
-
-  # Other
-  # cowsay
-  # file
-  # which
-  # tree
-  # gnused
-  # gnutar
-  # gawk
-  # gnupg
-  # hugo
-  # glow
-  */
 }

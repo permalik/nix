@@ -147,6 +147,7 @@
           inherit inputs outputs unstable;
           userConfig = users.${username};
           homeModules = {
+            core = import ./home-manager/core;
             core_orbstack = import ./home-manager/core_orbstack;
             core_mac = import ./home-manager/core_mac;
             core_parallels = import ./home-manager/core_parallels;
@@ -173,7 +174,7 @@
     };
 
     homeConfigurations = {
-      "permalik@nixos" = mkHomeConfiguration "x86_64-linux" "permalik" "linux";
+      "linux" = mkHomeConfiguration "x86_64-linux" "permalik" "linux" "core";
       "permalik@orb" = mkHomeConfiguration "aarch64-linux" "tymalik" "orbstack" "core_orbstack";
       "permalik@mac" = mkHomeConfiguration "aarch64-darwin" "tymalik" "mac" "core_mac";
       "parallels@par" = mkHomeConfiguration "aarch64-linux" "parallels" "ubuntu-linux-2404" "core_parallels";

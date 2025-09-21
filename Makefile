@@ -2,9 +2,9 @@
 rebuild:
 	sudo ./rebuild.sh
 
-.PHONY: update_linux
-update_linux:
-	cd /etc/nixos && home-manager switch --flake .#permalik@nixos
+.PHONY: build_linux
+build_linux:
+	home-manager switch --flake .#linux
 
 .PHONY: darwin_flake
 darwin_flake:
