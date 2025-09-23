@@ -17,6 +17,7 @@
   };
 
   home.packages = with pkgs; [
+    rustup
     starship
     tmux
     tree
