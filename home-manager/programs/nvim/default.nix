@@ -12,6 +12,7 @@
     '';
 
     plugins = with pkgs.vimPlugins; [
+      cmp-nvim-lsp
       conform-nvim
       fzf-lua
       gitsigns-nvim
@@ -20,6 +21,8 @@
       haskell-tools-nvim
       indent-blankline-nvim
       kanagawa-nvim
+      lspkind-nvim
+      lualine-lsp-progress
       lualine-nvim
       luasnip
       mini-nvim
@@ -65,12 +68,15 @@
       gcc
       go
       gopls
+      haskellPackages.haskell-language-server
       delve
       golint
       golangci-lint
       gotools
       go-tools
       isort
+      jdt-language-server
+      lua-language-server
       # ltex-ls
       nil
       nixd
@@ -79,6 +85,7 @@
       # nodePackages.sql-formatter
       nodePackages.typescript-language-server
       nodejs
+      ocamlPackages.ocaml-lsp
       postgresql
       prettierd
       pyright
@@ -88,10 +95,13 @@
       shellcheck
       shfmt
       stylua
+      tailwindcss-language-server
       terraform-ls
       tree-sitter
       universal-ctags
+      vscode-langservers-extracted
       xsel
+      yaml-language-server
     ];
   };
 

@@ -9,6 +9,7 @@
 }: {
   imports = [
     ../programs/nvim
+    ../programs/tmux
   ];
 
   home = {
@@ -19,7 +20,6 @@
   home.packages = with pkgs; [
     rustup
     starship
-    tmux
     tree
     unstable.zig_0_14
     # brave

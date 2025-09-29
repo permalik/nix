@@ -20,9 +20,10 @@
     extraConfig = ''
       set-option -g mouse on
       unbind C-b
-      set-option -g prefix C-a
+      set -g prefix C-a
       bind C-Space send-prefix
 
+      setw -g mode-keys vi
       bind-key h select-pane -L
       bind-key j select-pane -D
       bind-key k select-pane -U
@@ -31,6 +32,19 @@
       bind '%' split-window -h -c "#{pane_current_path}"
       bind-key v split-window -v -c "#{pane_current_path}" -l '25%'
       bind-key b split-window -h -c "#{pane_current_path}" -l '30%'
+
+      set-option -g allow-rename off
+      set-option -g terminal-overrides 'xterm-256color:RGB'
+      # set -g @plugin 'tmux-plugins/tpm'
+      # set -g @plugin 'tmux-plugins/tmux-resurrect'
+      # set -g @resurrect-strategy-nvim 'session'
+      set -g status-left-length 85
+      set -g status-left "[fg=colour9,bold]permalik #[fg=colour214,bold]#S"
+      set -g window-status-format "#[fg=default]#I::#W"
+      set -g status-current-format "[fg=default,bold bg=default]| #[fg=colour159 bg=black]#W #[fg=default,bold bg=default]"
+      set -g status-style bg=default
+      set status-right "#[fg=black] #[bg=colour214] %b %d %Y %l:%M %p"
+      # run '~/.tmux/plugins/tpm/tpm'
     '';
   };
 }
