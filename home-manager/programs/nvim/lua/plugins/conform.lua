@@ -14,6 +14,8 @@ require("conform").setup {
         }
     end,
     formatters_by_ft = {
+        c = { "clang-format" },
+        cpp = { "clang-format" },
         haskell = { "ormolu" },
         lua = { "stylua" },
         nix = { "alejandra" },
