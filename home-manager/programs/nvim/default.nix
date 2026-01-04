@@ -38,6 +38,7 @@
       nvim-dap-ui
       nvim-dap-virtual-text
       nvim-lint
+      nvim-lspconfig
       nvim-nio
       nvim-treesitter.withAllGrammars
       plenary-nvim

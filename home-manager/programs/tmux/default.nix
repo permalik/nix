@@ -8,7 +8,7 @@
   ...
 }: {
   programs.tmux = {
-    enable = false;
+    enable = true;
     terminal = "xterm-256color";
     clock24 = true;
     historyLimit = 1000000;
@@ -38,12 +38,12 @@
       # set -g @plugin 'tmux-plugins/tpm'
       # set -g @plugin 'tmux-plugins/tmux-resurrect'
       # set -g @resurrect-strategy-nvim 'session'
-      set -g status-left-length 85
-      set -g status-left "[fg=colour9,bold]permalik #[fg=colour214,bold]#S"
-      set -g window-status-format "#[fg=default]#I::#W"
-      set -g status-style bg=default
-      set status-right "#[fg=black] #[bg=colour214] %b %d %Y %l:%M %p"
-      set -g status-current-format "[fg=default,bold bg=default]| #[fg=colour159 bg=black]#W #[fg=default,bold bg=default]"
+      # set -g status-left-length 85
+      # set -g status-left "[fg=colour9,bold]permalik #[fg=colour214,bold]#S"
+      # set -g window-status-format "#[fg=default]#I::#W"
+      # set -g status-style bg=default
+      # set status-right "#[fg=black] #[bg=colour214] %b %d %Y %l:%M %p"
+      # set -g status-current-format "[fg=default,bold bg=default]| #[fg=colour159 bg=black]#W #[fg=default,bold bg=default]"
       # run '~/.tmux/plugins/tpm/tpm'
     '';
   };
