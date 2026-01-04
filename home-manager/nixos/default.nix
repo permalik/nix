@@ -18,16 +18,16 @@
   };
 
   home.packages = with pkgs; [
-    haskell.compiler.native-bignum.ghc983
-    haskellPackages.cabal-install
+    # haskell.compiler.native-bignum.ghc983
+    # haskellPackages.cabal-install
     just
-    nodejs_22
-    pnpm_9
+    # nodejs_22
+    # pnpm_9
     rustup
     starship
     tree
-    unstable.zig_0_14
-    zls
+    # unstable.zig_0_14
+    # zls
     # brave
     # unstable.ghostty
     # Compression

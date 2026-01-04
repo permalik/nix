@@ -2,15 +2,15 @@
   description = "tymalik nixos + nix-darwin";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixcats.url = "github:birdeehub/nixcats-nvim";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
-      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vim-plugins = {
@@ -74,7 +74,18 @@
           inherit inputs outputs;
           userConfig = users.${username};
         };
-        modules = [./hosts/${hostname}];
+        modules = [
+          ./hosts/${hostname}
+
+          inputs.home-manager.nixosModules.home-manager
+         
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.permalik = import ./home/nixos;
+          }
+        ];
       };
 
     mkOrbstackConfiguration = hostname: system: username:
@@ -97,7 +108,7 @@
 
               # users.tymalik = {
               #   imports = [
-              #     {home.stateVersion = "24.11";}
+              #     {home.stateVersion = "25.11";}
               #   ];
               # };
               extraSpecialArgs = {
@@ -163,7 +174,7 @@
     overlays = overlays;
 
     nixosConfigurations = {
-      nixos = mkNixosConfiguration "linux" "permalik";
+      nixos = mkNixosConfiguration "nixos" "permalik";
       orb = mkOrbstackConfiguration "orbstack" "tymalik";
       par = mkOrbstackConfiguration "ubuntu-linux-2404" "aarch64-linux" "parallels";
       wsl = mkOrbstackConfiguration "permalik-win" "permalik";
@@ -174,7 +185,7 @@
     };
 
     homeConfigurations = {
-      "linux" = mkHomeConfiguration "x86_64-linux" "permalik" "linux" "core";
+      "permalik@nixos" = mkHomeConfiguration "x86_64-linux" "permalik" "nixos" "nixos";
       "permalik@orb" = mkHomeConfiguration "aarch64-linux" "tymalik" "orbstack" "core_orbstack";
       "permalik@mac" = mkHomeConfiguration "aarch64-darwin" "tymalik" "mac" "core_mac";
       "parallels@par" = mkHomeConfiguration "aarch64-linux" "parallels" "ubuntu-linux-2404" "core_parallels";

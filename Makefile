@@ -14,6 +14,24 @@ darwin_flake:
 darwin_hm:
 	home-manager switch --flake .#permalik@mac
 
+###
+### GOOD
+###
+.PHONY: nixos_flake
+nixos_flake:
+	sudo nixos-rebuild switch --flake .#nixos
+
+.PHONY: nixos_init_hm
+nixos_init_hm:
+	nix run .#homeConfigurations.permalik@nixos.activationPackage
+
+.PHONY: nixos_hm
+nixos_hm:
+	home-manager switch --flake .#permalik@nixos
+###
+### GOOD
+###
+
 .PHONY: orb_flake
 orb_flake:
 	sudo nixos-rebuild switch --flake .#orb
