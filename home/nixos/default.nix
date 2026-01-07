@@ -22,10 +22,17 @@ unstable,
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    cargo
+    gcc
     just
-    rustup
+    nodejs_24
+    pkg-config
+    pnpm_9
+    rust-analyzer-unwrapped
+    rustc
     starship
     tree
+    turbo
   ];
 
   # Smooth system service reloads when changing configuration
