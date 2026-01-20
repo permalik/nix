@@ -17,6 +17,16 @@ darwin_hm:
 ###
 ### GOOD
 ###
+.PHONY: nixosdesk_flake
+nixosdesk_flake:
+	sudo nixos-rebuild switch --flake .#nixosdesk
+###
+### GOOD
+###
+
+###
+### GOOD
+###
 .PHONY: nixos_flake
 nixos_flake:
 	sudo nixos-rebuild switch --flake .#nixos

@@ -175,6 +175,7 @@
 
     nixosConfigurations = {
       nixos = mkNixosConfiguration "nixos" "permalik";
+      nixosdesk = mkNixosConfiguration "nixos_desktop" "permalik";
       orb = mkOrbstackConfiguration "orbstack" "tymalik";
       par = mkOrbstackConfiguration "ubuntu-linux-2404" "aarch64-linux" "parallels";
       wsl = mkOrbstackConfiguration "permalik-win" "permalik";
