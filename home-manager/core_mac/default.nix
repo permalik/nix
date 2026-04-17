@@ -7,9 +7,7 @@
   ...
 }: {
   imports = [
-    /*
-    ../programs/git
-    */
+    # ../programs/git
     ../programs/nvim
   ];
 
@@ -21,16 +19,16 @@
   home.packages = with pkgs; [
     /*
     # Compression
-    zip
-    unzip
-    xz
+    #zip
+    #unzip
+    #xz
     # zstd
     # p7zip
 
     # Utils
-    ripgrep
-    fzf
-    jq
+    #ripgrep
+    #fzf
+    #jq
     # yq-go
     # eza
 

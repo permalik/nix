@@ -18,14 +18,14 @@
     };
 
     environment.systemPackages = with pkgs; [
-      fzf
-      rustup
-      go
-      nodejs_22
+      #fzf
+      #rustup
+      #go
+      #nodejs_22
       # nodejs-slim
-      pnpm_9
-      unstable.zig_0_14
-      ghostty
+      #pnpm_9
+      #unstable.zig_0_14
+      #ghostty
     ];
 
   /*
