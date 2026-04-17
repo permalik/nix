@@ -64,7 +64,7 @@
       cargo
       ccls
       delta
-      dockerfile-language-server-nodejs
+      dockerfile-language-server
       fd
       fzf
       gcc

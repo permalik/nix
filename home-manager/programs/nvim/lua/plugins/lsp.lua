@@ -148,6 +148,9 @@ vim.lsp.config.racket_langserver = {
 }
 
 vim.lsp.config.rust_analyzer = {
+    cmd = {
+        "/nix/store/3xd5fv6npyk4dg0bniv5nhhf9685kkdp-rust-analyzer-2025-10-28/bin/rust-analyzer",
+    },
     settings = {
         ["rust-analyzer"] = {
             imports = {
