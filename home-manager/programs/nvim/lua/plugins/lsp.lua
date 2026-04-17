@@ -77,31 +77,38 @@ local capabilities =
 
 local servers = {
     dockerls = {},
-    astro = {},
     bashls = {},
     clangd = {},
     cmake = {},
     emmet_language_server = {},
     gopls = {},
     marksman = {},
-    ocamllsp = {},
+    -- ocamllsp = {},
     pyright = {},
-    slint_lsp = {},
-    svelte = {},
+    -- slint_lsp = {},
+    -- svelte = {},
     tailwindcss = {},
-    terraformls = {},
+    -- terraformls = {},
     ts_ls = {},
     vimls = {},
     yamlls = {},
-    zls = {},
+    -- zls = {},
 }
 
 -- ============================================================
 -- INDIVIDUAL SERVER CONFIGS
 -- ============================================================
 
+astro = {
+    cmd = {
+        "astro-language-server",
+        "--stdio",
+    },
+}
+vim.lsp.config.astro = astro
+
 vim.lsp.config.ccls = {
-    cmd = { "/usr/bin/ccls" },
+    cmd = { "ccls" },
     filetypes = { "c", "cpp" },
     offset_encoding = "utf-32",
 
@@ -219,16 +226,6 @@ vim.lsp.config.rust_analyzer = {
 -- }
 
 -- ============================================================
--- APPLY SHARED DEFAULTS
--- ============================================================
-
-for name, config in pairs(servers) do
-    vim.lsp.config[name] = vim.tbl_deep_extend("force", {
-        capabilities = capabilities,
-    }, config)
-end
-
--- ============================================================
 -- ENABLE LSP AUTOSTART (EXPLICIT)
 -- ============================================================
 
@@ -262,5 +259,12 @@ local enable = {
     "racket_langserver",
     "rust_analyzer",
 }
+
+for name, config in pairs(servers) do
+    vim.lsp.config[name] = vim.tbl_deep_extend("force", {
+
+        capabilities = capabilities,
+    }, config)
+end
 
 vim.lsp.enable(enable)

@@ -42,7 +42,7 @@
       nvim-nio
       nvim-treesitter.withAllGrammars
       plenary-nvim
-      roslyn-nvim
+      # roslyn-nvim
       rose-pine
       telescope-nvim
       todo-comments-nvim
