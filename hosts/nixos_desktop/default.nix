@@ -14,6 +14,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -72,12 +73,15 @@
     _1password-gui
     bibata-cursors
     brave
+    cmake
     dunst
+    gcc
     ghostty
     git
     gnumake
     grim
     networkmanagerapplet
+    pkg-config
     slurp
     vim 
     waybar
