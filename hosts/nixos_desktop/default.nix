@@ -79,6 +79,7 @@
     ghostty
     git
     gnumake
+    google-chrome
     grim
     networkmanagerapplet
     pkg-config
