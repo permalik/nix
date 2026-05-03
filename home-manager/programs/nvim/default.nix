@@ -42,7 +42,7 @@
       nvim-nio
       nvim-treesitter.withAllGrammars
       plenary-nvim
-      roslyn-nvim
+      # roslyn-nvim
       rose-pine
       telescope-nvim
       todo-comments-nvim
@@ -64,7 +64,7 @@
       cargo
       ccls
       delta
-      dockerfile-language-server-nodejs
+      dockerfile-language-server
       fd
       fzf
       gcc

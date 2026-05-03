@@ -135,6 +135,24 @@
           ./hosts/${hostname}
           (import ./modules/system_packages.nix)
           home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.extraSpecialArgs = {
+          inherit inputs outputs;
+          unstable = unstables.${system};
+          userConfig = users.${username};
+          homeModules = {
+            core = import ./home-manager/core;
+            core_orbstack = import ./home-manager/core_orbstack;
+            core_mac = import ./home-manager/core_mac;
+            core_parallels = import ./home-manager/core_parallels;
+            core_wsl = import ./home-manager/core_wsl;
+          };
+        };
+            home-manager.users.tymalik = import ./home/mac;
+          }
         ];
       };
 

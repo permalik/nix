@@ -8,7 +8,7 @@ build_linux:
 
 .PHONY: darwin_flake
 darwin_flake:
-	darwin-rebuild switch --flake .#mac
+	sudo darwin-rebuild switch --flake .#mac
 
 .PHONY: darwin_hm
 darwin_hm:
