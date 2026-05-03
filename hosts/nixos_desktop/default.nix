@@ -84,6 +84,7 @@
     networkmanagerapplet
     pkg-config
     slurp
+    spotify
     vim 
     waybar
     wget
