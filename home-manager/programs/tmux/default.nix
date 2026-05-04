@@ -15,6 +15,7 @@
     plugins = [
       # yank
       pkgs.tmuxPlugins.nord
+      pkgs.tmuxPlugins.resurrect
     ];
 
     extraConfig = ''

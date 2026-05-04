@@ -85,7 +85,7 @@
     pkg-config
     slurp
     spotify
-    vim 
+    vim
     waybar
     wget
     wl-clipboard
