@@ -24,9 +24,12 @@ unstable,
 
   home.packages = with pkgs; [
     cargo
+    discord
     gcc
     just
+    kdePackages.dolphin
     nodejs_24
+    obsidian
     pkg-config
     pnpm_9
     rust-analyzer-unwrapped
