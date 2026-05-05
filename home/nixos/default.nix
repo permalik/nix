@@ -26,6 +26,7 @@ unstable,
     cargo
     discord
     gcc
+    httpie
     just
     kdePackages.dolphin
     nodejs_24
@@ -34,6 +35,7 @@ unstable,
     pnpm_9
     rust-analyzer-unwrapped
     rustc
+    slack
     starship
     tree
     turbo
