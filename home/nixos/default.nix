@@ -11,6 +11,7 @@ unstable,
   imports = [
     ../../home-manager/programs/nvim
     ../../home-manager/programs/tmux
+    ../../home-manager/programs/bash
   ];
 
   home = {
