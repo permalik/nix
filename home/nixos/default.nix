@@ -23,6 +23,7 @@ unstable,
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    brave
     cargo
     discord
     gcc
