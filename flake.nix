@@ -134,6 +134,11 @@
         modules = [
           ./hosts/${hostname}
           (import ./modules/system_packages.nix)
+
+            {
+              nixpkgs.config.allowUnfree = true;
+            }
+
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

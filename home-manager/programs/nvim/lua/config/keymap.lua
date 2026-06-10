@@ -133,3 +133,10 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", {
     desc = "exit terminal mode",
 })
+
+vim.keymap.set(
+    "n",
+    "<leader>mm",
+    "<cmd>lua require('sidekick.cli').toggle({ name = 'codex', focus = true, debug = true })<CR>",
+    { desc = "Sidekick Codex" }
+)

@@ -17,6 +17,10 @@
   };
 
   home.packages = with pkgs; [
+    # Nix
+    nh
+    # Language
+    go
     /*
     # Compression
     #zip

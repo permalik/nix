@@ -44,6 +44,7 @@
       plenary-nvim
       # roslyn-nvim
       rose-pine
+      sidekick-nvim
       telescope-nvim
       todo-comments-nvim
       trouble-nvim
