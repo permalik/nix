@@ -140,3 +140,13 @@ vim.keymap.set(
     "<cmd>lua require('sidekick.cli').toggle({ name = 'codex', focus = true, debug = true })<CR>",
     { desc = "Sidekick Codex" }
 )
+
+vim.keymap.set("n", "<leader>ff", function()
+    require("conform").format {
+        async = true,
+        lsp_format = "fallback",
+    }
+end, {
+    desc = "[f]ormat [f]ile",
+    silent = true,
+})

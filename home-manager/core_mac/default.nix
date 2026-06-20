@@ -21,12 +21,13 @@
 
   home.packages = with pkgs; [
     # Nix
-    codex
     nh
     # Language
     go
+    ripgrep
     inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.zig_0_16
+    inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.codex
     /*
     # Compression
     #zip
