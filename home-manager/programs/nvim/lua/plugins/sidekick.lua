@@ -29,37 +29,22 @@ return {
         end
 
         local function send_to_codex(msg, submit)
-            open_codex()
-
-            vim.defer_fn(function()
-                cli.send {
-                    msg = msg,
-                    submit = submit or false,
-                }
-            end, 150)
+            cli.send {
+                name = "codex",
+                msg = msg,
+            }
         end
 
         local function send_selection_to_codex(prompt)
-            local msg = string.format(
-                [[
-{selection}
-
----
-
-%s
-]],
-                prompt or "Implement / analyze / modify as needed."
-            )
-
-            send_to_codex(msg, true)
+            send_to_codex(string.format("%s\n\n{selection}", prompt))
         end
 
-        vim.keymap.set("n", "<leader>mm", function()
+        vim.keymap.set("n", "<leader>mq", function()
             open_codex()
         end, { desc = "Sidekick Toggle Codex" })
 
         vim.keymap.set("x", "<leader>mn", function()
-            send_to_codex("{selection}", false)
+            send_to_codex "{selection}"
         end, { desc = "Send Selection to Codex" })
 
         vim.keymap.set("x", "<leader>mk", function()

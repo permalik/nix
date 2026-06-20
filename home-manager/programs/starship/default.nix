@@ -1,14 +1,102 @@
-{userConfig, ...}: {
+{ ... }: {
   programs.starship = {
     enable = true;
+    enableZshIntegration = true;
+
     settings = {
-    add_newline = true;
-    command_timeout = 1300;
-    scan_timeout = 50;
-    format = "$all$nix_shell$nodejs$lua$golang$rust$php$zig$git_branch$git_commit$git_state$git_status\n$username$hostname$directory";
-    character = {
-      success_symbol = "[](bold green) ";
-      error_symbol = "[✗](bold red) ";
+      command_timeout = 5000;
+
+      c = {
+        symbol = "🇨 ";
+      };
+
+      dotnet = {
+        symbol = "🥅 ";
+      };
+
+      elixir = {
+        symbol = "💧 ";
+      };
+
+      golang = {
+        symbol = "🐹 ";
+      };
+
+      haskell = {
+        symbol = "λ ";
+      };
+
+      java = {
+        symbol = "☕ ";
+      };
+
+      nodejs = {
+        symbol = " ";
+      };
+
+      kotlin = {
+        symbol = "🅺 ";
+      };
+
+      lua = {
+        symbol = "🌙 ";
+      };
+
+      ocaml = {
+        symbol = "🐫 ";
+      };
+
+      python = {
+        symbol = "🐍 ";
+      };
+
+      rust = {
+        symbol = "🦀 ";
+      };
+
+      zig = {
+        symbol = "⚡ ";
+      };
+
+      php = {
+        symbol = "🐘 ";
+      };
+
+      scala = {
+        symbol = "🌟 ";
+      };
+
+      swift = {
+        symbol = "🐦 ";
+      };
+
+      terraform = {
+        symbol = "💠 ";
+      };
+
+      vagrant = {
+        symbol = "⍱ ";
+      };
+
+      helm = {
+        symbol = "* ";
+      };
+
+      kubernetes = {
+        symbol = "⛵️ ";
+      };
+
+      meson = {
+        symbol = "🐏 ";
+      };
+
+      rlang = {
+        symbol = "📐 ";
+      };
+
+      ruby = {
+        disabled = true;
+      };
     };
   };
 }

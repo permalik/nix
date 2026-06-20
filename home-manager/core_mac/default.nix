@@ -9,6 +9,9 @@
   imports = [
     # ../programs/git
     ../programs/nvim
+    ../programs/starship
+    ../programs/tmux
+    ../programs/zsh
   ];
 
   home = {
@@ -18,9 +21,12 @@
 
   home.packages = with pkgs; [
     # Nix
+    codex
     nh
     # Language
     go
+    inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.zig_0_16
     /*
     # Compression
     #zip

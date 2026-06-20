@@ -12,6 +12,7 @@
     '';
 
     plugins = with pkgs.vimPlugins; [
+      catppuccin-nvim
       cmp-nvim-lsp
       conform-nvim
       fzf-lua

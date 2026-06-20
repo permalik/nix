@@ -112,13 +112,10 @@ vim.lsp.config.ccls = {
     filetypes = { "c", "cpp" },
     offset_encoding = "utf-32",
 
-    root_dir = function(fname)
-        local root = vim.fs.find({ "compile_commands.json", ".git" }, {
-            upward = true,
-            path = fname,
-        })[1]
-        return root and vim.fs.dirname(root) or vim.loop.cwd()
-    end,
+    root_markers = {
+        "compile_commands.json",
+        ".git",
+    },
 
     init_options = {
         index = { threads = 0 },
