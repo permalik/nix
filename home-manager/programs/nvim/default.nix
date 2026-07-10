@@ -8,7 +8,6 @@
     defaultEditor = true;
     extraConfig = ''
       set number relativenumber
-      vim.cmd("luafile ~/.config/nvim/init.lua")
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -62,11 +61,13 @@
 
     extraPackages = with pkgs; [
       alejandra
+      astro-language-server
       black
       cargo
       ccls
       delta
       dockerfile-language-server
+      emmet-language-server
       fd
       fzf
       gcc
@@ -102,6 +103,7 @@
       tailwindcss-language-server
       terraform-ls
       tree-sitter
+      typescript
       universal-ctags
       vscode-langservers-extracted
       xsel
@@ -115,5 +117,10 @@
       recursive = true;
     };
     "nvim/init.lua".source = ./init.lua;
+    "nvim/lua/nix_paths.lua".text = ''
+      return {
+        tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib",
+      }
+    '';
   };
 }

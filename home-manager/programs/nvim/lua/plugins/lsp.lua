@@ -99,13 +99,42 @@ local servers = {
 -- INDIVIDUAL SERVER CONFIGS
 -- ============================================================
 
-astro = {
-    cmd = {
-        "astro-language-server",
-        "--stdio",
+local nix_paths = require "nix_paths"
+local tsdk = nix_paths.tsdk
+
+if type(tsdk) ~= "string" or tsdk == "" then
+    error "nix_paths.tsdk is not set"
+end
+
+if vim.fn.isdirectory(tsdk) ~= 1 then
+    error("Astro TypeScript SDK directory does not exist: " .. tsdk)
+end
+
+vim.lsp.config("astro", {
+    cmd = { "astro-ls", "--stdio" },
+    filetypes = { "astro" },
+    root_markers = {
+        "package.json",
+        "astro.config.mjs",
+        "astro.config.ts",
+        "tsconfig.json",
+        ".git",
     },
-}
-vim.lsp.config.astro = astro
+    init_options = {
+        typescript = {
+            tsdk = tsdk,
+        },
+    },
+    capabilities = capabilities,
+})
+
+-- astro = {
+--     cmd = {
+--         "astro-language-server",
+--         "--stdio",
+--     },
+-- }
+-- vim.lsp.config.astro = astro
 
 vim.lsp.config.ccls = {
     cmd = { "ccls" },
