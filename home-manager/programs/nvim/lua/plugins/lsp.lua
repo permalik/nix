@@ -303,7 +303,7 @@ local enable = {
     -- explicitly configured
     "ccls",
     "lua_ls",
-    "jsonls",
+    -- "jsonls",
     "html",
     "cssls",
     "racket_langserver",
