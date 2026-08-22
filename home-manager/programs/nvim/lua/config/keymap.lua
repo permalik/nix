@@ -150,3 +150,8 @@ end, {
     desc = "[f]ormat [f]ile",
     silent = true,
 })
+
+vim.keymap.set("n", "gv", function()
+    vim.cmd "rightbelow vsplit"
+    vim.lsp.buf.definition()
+end, { desc = "Open definition in right split" })

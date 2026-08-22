@@ -27,6 +27,11 @@
     '';
 
     initContent = ''
+      export FLUTTER_HOME="$HOME/Docs/chamber/config/tool/flutter"
+      export DART_HOME="$FLUTTER_HOME/bin/cache/dart-sdk"
+
+      export PATH="$FLUTTER_HOME/bin:$DART_HOME/bin:$PATH"
+
       pretty_git_log() {
           local hash relative_time author refs subject format
 
