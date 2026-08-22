@@ -70,6 +70,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.home-manager
+    inputs.zed.packages.${pkgs.system}.default
     _1password-gui
     bibata-cursors
     brave
