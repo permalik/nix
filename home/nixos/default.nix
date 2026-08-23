@@ -42,7 +42,10 @@ unstable,
     turbo
   ];
 
-  home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;
+  home.file = {
+    ".config/hypr/hyprland.conf".source = ./hyprland.conf;
+    ".config/hypr/hypridle.conf".source = ./hypridle.conf;
+  };
 
   # Smooth system service reloads when changing configuration
   # systemd.user.startServices = "sd-switch";

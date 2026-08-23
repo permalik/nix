@@ -72,6 +72,7 @@
     inputs.home-manager.packages.${pkgs.system}.home-manager
     inputs.zed.packages.${pkgs.system}.default
     _1password-gui
+    android-studio
     bibata-cursors
     brave
     cmake
@@ -82,6 +83,8 @@
     gnumake
     google-chrome
     grim
+    hypridle
+    hyprlock
     networkmanagerapplet
     pkg-config
     slurp
@@ -120,6 +123,9 @@
   services = {
     blueman.enable = true;
     dbus.enable = true;
+    gnome = {
+      gnome-keyring.enable = true;
+    };
     greetd = {
       enable = true;
       settings = {
@@ -142,7 +148,10 @@
     };
   };
 
-  security.polkit.enable = true;
+  security = {
+    polkit.enable = true;
+    pam.services.greetd.enableGnomeKeyring = true;
+  };
 
   xdg.portal = {
     enable = true;
