@@ -20,6 +20,14 @@ darwin_hm:
 .PHONY: nixosdesk_flake
 nixosdesk_flake:
 	sudo nixos-rebuild switch --flake .#nixosdesk
+
+.PHONY: nixosdesk_flake_safe
+nixosdesk_flake_safe:
+	sudo nixos-rebuild switch \
+		--flake .#nixosdesk \
+		--max-jobs 1 \
+		--cores 2 \
+		-L
 ###
 ### GOOD
 ###

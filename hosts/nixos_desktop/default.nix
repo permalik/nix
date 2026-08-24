@@ -5,7 +5,29 @@
 { config, inputs, pkgs, ... }:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+
+    substituters = [
+      "https://cache.nixos.org/"
+      "https://zed.cachix.org"
+    ];
+
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "zed.cachix.org-1:/pHQ6dpMsAZk2DiP4WCL0p9YDNKWj2Q5FL20bNmw1cU="
+    ];
+
+    # Keep local compilation as a fallback, but don't let it saturate the machine.
+    max-jobs = 2;
+    cores = 4;
+  };
+
+  zramSwap = {
+    enable = true;
+    memoryPercent = 50;
+  };
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -98,6 +120,7 @@
     grim
     hypridle
     hyprlock
+    jq
     networkmanagerapplet
     pkg-config
     slurp
