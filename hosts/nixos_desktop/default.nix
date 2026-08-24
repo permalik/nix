@@ -48,12 +48,22 @@
   users.users.permalik = {
     isNormalUser = true;
     description = "permalik";
-    extraGroups = [ "audio" "networkmanager" "seat" "video" "wheel" ];
+    extraGroups = [
+      "audio"
+      "kvm"
+      "networkmanager"
+      "seat"
+      "video"
+      "wheel"
+    ];
     packages = with pkgs; [];
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    android_sdk.accept_license = true;
+  };
 
   programs = {
     hyprland = {
@@ -73,10 +83,13 @@
     inputs.zed.packages.${pkgs.system}.default
     _1password-gui
     android-studio
+    android-tools
     bibata-cursors
     brave
+    bubblewrap
     cmake
     dunst
+    flutter
     gcc
     ghostty
     git
@@ -134,6 +147,7 @@
         };
       };
     };
+    openssh.enable = true;
     pipewire = {
       enable = true;
       pulse.enable = true;
