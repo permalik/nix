@@ -123,6 +123,7 @@
     jq
     networkmanagerapplet
     pkg-config
+    python314
     slurp
     spotify
     vim
