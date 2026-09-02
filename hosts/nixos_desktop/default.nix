@@ -179,6 +179,7 @@
       jack.enable = true;
     };
     seatd.enable = true;
+    tailscale.enable = true;
     xserver.xkb = {
       layout = "us";
       options = "ctrl:nocaps";
@@ -204,7 +205,7 @@
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedUDPPorts = [ 41641 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
