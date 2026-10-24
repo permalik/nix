@@ -18,12 +18,11 @@
     };
 
     environment.systemPackages = with pkgs; [
+      unstable.nodejs_latest
+      unstable.pnpm
       #fzf
       #rustup
       #go
-      #nodejs_22
-      # nodejs-slim
-      #pnpm_9
       #unstable.zig_0_14
       #ghostty
     ];

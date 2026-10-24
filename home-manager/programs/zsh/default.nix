@@ -12,7 +12,6 @@
 
     envExtra = ''
       export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
-      export PATH=":$HOME/Library/pnpm:$PATH"
       export PATH=":$PATH:$HOME/.rvm/bin"
       export PATH="/usr/local/share/dotnet/x64:$PATH"
       export PATH="$PATH:$HOME/.local/bin"

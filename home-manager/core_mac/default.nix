@@ -25,8 +25,6 @@
     nh
     # Language
     go
-    nodejs
-    pnpm
     ripgrep
     inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.zig_0_16
